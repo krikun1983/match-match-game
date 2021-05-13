@@ -60,6 +60,14 @@ module.exports = {
         test: /\.s[ac]ss$/i,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+        options: {
+          // Disables attributes processing
+          sources: true,
+        },
+      },
     ],
   },
   plugins: [
