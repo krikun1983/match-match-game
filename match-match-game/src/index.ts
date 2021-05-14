@@ -1,2 +1,6 @@
 import './style.scss';
-// import './fonts.scss'
+import { App } from './app';
+
+window.onload = () => {
+  new App(document.body).start();
+};
