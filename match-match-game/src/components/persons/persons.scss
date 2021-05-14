@@ -1,0 +1,39 @@
+.persons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 200px;
+  height: 40px;
+  &__btn-start {
+    cursor: pointer;
+    width: 129px;
+    height: 36px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #2196F3;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0px 6px 10px 0px rgba(0,0,0,.12);
+    &:hover {
+      background-color: rgba(255,255,255,.7);
+    }
+  }
+  &__avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    img {
+      border-radius: 50%;
+    }
+    // // background-image: url('avatar.png');
+    // background-repeat: no-repeat;
+    // background-size: cover;
+  }
+}
