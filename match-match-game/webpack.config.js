@@ -16,7 +16,7 @@ const devServer = () =>
     : {
         devServer: {
           open: true,
-          hot: true,
+          // hot: true,
           port: 8080,
           contentBase: path.resolve(__dirname, 'dist'),
         },
@@ -75,7 +75,7 @@ module.exports = {
     ...esLintPlugin(isDev),
     new MiniCssExtractPlugin({ filename: filename('css') }),
     new HtmlWebpackPlugin({
-      template: './index.html',
+      template: './index.html', //template: path.resolve(__dirname, './src/index.html')
       minify: {
         collapseWhitespace: isProd,
       },
