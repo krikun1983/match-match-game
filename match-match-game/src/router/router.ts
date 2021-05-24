@@ -1,10 +1,44 @@
-import { Game } from "../components/game/game";
-import { Header } from "../components/header/header";
-import { Main } from "../components/main/main";
+import { Route } from '../app.api';
+import { NotFound404Page } from '../components/page/404Page';
+import { AboutPage } from '../components/page/aboutPage';
+import { GamePage } from '../components/page/gamePage';
+import { ScorePage } from '../components/page/scorePage';
 
+export class Router {
+  private get notFound404Route(): Route {
+    const notFound404route = this.routes.find((route) => route.path === '**');
 
-export default [
-  { path: "/", component: new Header() },
-  { path: "/best", component: new Main() },
-  { path: "/settings", component: new Game() },
-];
+    if (notFound404route) {
+      return notFound404route;
+    }
+
+    throw new Error(
+      "Route for 404 page wasn't found! Please, provide route for 404 page in your routes array.",
+    );
+  }
+
+  public constructor(private routes: Route[]) {
+    this.navigateToDefaultRoute();
+  }
+
+  public onRouteChange(callback: (route: Route) => void): void {
+    window.addEventListener('popstate', () => {
+      callback(this.getCurrentRoute());
+    });
+  }
+
+  private getCurrentRoute(): Route {
+    const currentRoute = this.routes.find(
+      (route) => route.path === this.getCurrentPath(),
+    );
+    return currentRoute ?? this.notFound404Route;
+  }
+
+  private getCurrentPath(): string {
+    return window.location.hash.slice(1).toLowerCase() || "/";
+  }
+
+  private navigateToDefaultRoute(): void {
+    window.location.href = `${window.location.origin}#${this.getCurrentPath() || this.routes[0]?.path}`;
+  }
+}
