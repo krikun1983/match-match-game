@@ -18,7 +18,7 @@ export class App {
     this.game = new Game();
     this.rootElement.appendChild(this.header.element);
     // this.rootElement.appendChild(this.main.render());
-    // this.main.element.appendChild(this.game.element);
+    // this.rootElement.appendChild(this.game.element);
   }
 
   async start() {

@@ -2,10 +2,6 @@ import './main.scss';
 import { BaseComponent } from '../base-components';
 import { Router } from '../../router/router';
 import { Route } from '../../app.api';
-import { AboutPage } from '../page/aboutPage';
-import { ScorePage } from '../page/scorePage';
-import { GamePage } from '../page/gamePage';
-import { routes } from '../../router/routes';
 
 export class Main extends BaseComponent {
   constructor(private router: Router) {

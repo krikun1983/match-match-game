@@ -8,7 +8,7 @@ export interface WithRender {
 
 export interface Route {
   path: string;
-  Component: new () => WithRender;
+  Component: new () => Component;
 }
 
 export type RootElement = HTMLElement | null;

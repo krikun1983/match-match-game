@@ -1,6 +1,6 @@
 import { Route } from "../app.api";
 import { NotFound404Page } from "../components/page/404Page";
-import { AboutPage } from "../components/page/aboutPage";
+import { AboutPage } from "../components/page/aboutPage/aboutPage";
 import { GamePage } from "../components/page/gamePage";
 import { ScorePage } from "../components/page/scorePage";
 

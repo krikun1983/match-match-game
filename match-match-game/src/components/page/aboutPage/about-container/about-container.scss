@@ -1,0 +1,104 @@
+.container {
+  margin: 0 auto;
+  padding-top: 28px;
+  padding-left: 36px;
+  width: 1000px;
+  height: 802px;
+  background-color: rgba(0,0,0, .05);
+  border-radius: 5px;
+}
+
+h6 {
+  margin-bottom: 20px;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 780px;
+  height: 639px;
+}
+
+.questions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 360px;
+  height: 639px;
+  div {
+    display: flex;
+    align-items: flex-start;
+    padding-top: 15px;
+    padding-left: 15px;
+    font-size: 14px;
+    color: rgba(0,0, 0, 0.6);
+    line-height: 16px;
+    background-color: #ffffff;
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 16px;
+      width: 40px;
+      height: 40px;
+      font-size: 24px;
+      line-height: 21px;
+      border-radius: 75%;
+      color: #ffffff;
+      background-color: #2196F3;
+      -webkit-box-shadow: 4px 2px 4px 0px rgba(34, 60, 80, 0.14);
+      -moz-box-shadow: 4px 2px 4px 0px rgba(34, 60, 80, 0.14);
+      box-shadow: 4px 2px 4px 0px rgba(34, 60, 80, 0.14);
+    }
+  }
+  div:nth-child(1) {
+    width: 100%;
+    height: 230px;
+  }
+  div:nth-child(2) {
+    width: 100%;
+    height: 132px;
+  }
+  div:nth-child(3) {
+    width: 100%;
+    height: 240px;
+  }
+}
+
+.images {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 330px;
+  height: 639px;
+  &__popup {
+    margin-bottom: 28px;
+    width: 302px;
+    height: 218px;
+    background-image: url('../../../../../public/about-popup.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  &__settings {
+    margin-bottom: 80px;
+    width: 116px;
+    height: 73px;
+    background-image: url('../../../../../public/about-settings.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  &__field {
+    width: 330px;
+    height: 240px;
+    background-image: url('../../../../../public/about-field.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+}
