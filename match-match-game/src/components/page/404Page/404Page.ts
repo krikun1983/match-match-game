@@ -1,4 +1,4 @@
-import { WithRender } from '../../app.api';
+import { WithRender } from '../../../app.api';
 
 export class NotFound404Page implements WithRender {
   public render(): HTMLElement {

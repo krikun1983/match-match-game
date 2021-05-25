@@ -6,7 +6,7 @@ export class HeaderMatch extends BaseComponent {
     super('div', ['match']);
     this.element.innerHTML = `
     <p class="header-match__text">match</p>
-    <p class="header-match__btn">match</p>
+    <a class="header-match__btn" href="#/game">match</a>
     `;
   }
 }
