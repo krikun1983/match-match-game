@@ -28,5 +28,4 @@ export class App {
     const images = cat.images.map((name) => `${cat.category}/${name}`);
     this.game.newGame(images);
   }
-
 }

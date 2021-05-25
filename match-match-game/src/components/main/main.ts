@@ -10,7 +10,7 @@ export class Main extends BaseComponent {
   }
 
   public init(): void {
-    document.body.append(this.element);
+    document.body?.append(this.element);
   }
 
   private renderCurrentComponent(route: Route): void {

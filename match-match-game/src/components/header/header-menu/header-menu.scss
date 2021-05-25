@@ -20,6 +20,9 @@
         text-align: center;
         color: #ffffff;
         text-decoration: none;
+        &.active {
+          background-color: #397de6;
+        }
         svg {
           display: block;
           width: 20px;

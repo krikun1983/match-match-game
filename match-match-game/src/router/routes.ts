@@ -2,7 +2,7 @@ import { Route } from "../app.api";
 import { NotFound404Page } from "../components/page/404Page";
 import { AboutPage } from "../components/page/aboutPage/aboutPage";
 import { GamePage } from "../components/page/gamePage";
-import { ScorePage } from "../components/page/scorePage";
+import { ScorePage } from "../components/page/scorePage/scorePage";
 
 export const routes: Route[] = [
   {
@@ -18,11 +18,15 @@ export const routes: Route[] = [
     Component: ScorePage,
   },
   {
+    path: '/settings',
+    Component: GamePage,
+  },
+  {
     path: '/game',
     Component: GamePage,
   },
   {
-    path: '/**',
+    path: '**',
     Component: NotFound404Page,
   },
 ];
