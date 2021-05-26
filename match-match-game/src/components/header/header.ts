@@ -3,7 +3,7 @@ import { HeaderMatch } from './header-match/header-match';
 import { HeaderContainer } from './header-container/header-container';
 import { HeaderMenu } from './header-menu/header-menu';
 import { HeaderNav } from './header-nav/header-nav';
-import { HeaderGames } from './header-games/header-games';
+import { HeaderGamerPersons } from './header-games/header-games';
 import './header.scss';
 
 export class Header extends BaseComponent {
@@ -15,7 +15,7 @@ export class Header extends BaseComponent {
 
   private readonly headerMenu: HeaderMenu;
 
-  private readonly headerGames: HeaderGames;
+  private readonly headerGames: HeaderGamerPersons;
 
   constructor() {
     super('header', ['header']);
@@ -23,7 +23,7 @@ export class Header extends BaseComponent {
     this.match = new HeaderMatch();
     this.headerNav = new HeaderNav();
     this.headerMenu = new HeaderMenu();
-    this.headerGames = new HeaderGames();
+    this.headerGames = new HeaderGamerPersons();
     this.element.appendChild(this.headerContainer.element);
     this.headerContainer.element.appendChild(this.match.element);
     this.headerContainer.element.appendChild(this.headerNav.element);

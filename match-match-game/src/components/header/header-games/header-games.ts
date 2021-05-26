@@ -2,7 +2,7 @@ import { BaseComponent } from '../../base-components';
 import './header-games.scss';
 // import img from '../../assets/images/avatar.png';
 
-export class HeaderGames extends BaseComponent {
+export class HeaderGamerPersons extends BaseComponent {
   constructor() {
     super('div', ['header-games']);
     this.element.appendChild(this.renderButton());

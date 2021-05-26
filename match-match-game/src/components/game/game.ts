@@ -46,9 +46,17 @@ export class Game extends BaseComponent {
     }
 
     if (this.activeCard.image !== card.image) {
-      await delay(FLIP_DELAY);
+      this.activeCard.element.classList.add('check-no');
+      card.element.classList.add('check-no');
 
+      await delay(FLIP_DELAY);
+      this.activeCard.element.classList.remove('check-no');
+      card.element.classList.remove('check-no');
       await Promise.all([this.activeCard.flipToBack(), card.flipToBack()]);
+
+    } else {
+      this.activeCard.element.classList.add('check-yes');
+      card.element.classList.add('check-yes');
     }
     this.activeCard = undefined;
     this.isAnimation = false;
