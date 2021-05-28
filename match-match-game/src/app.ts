@@ -1,5 +1,6 @@
 import { Header } from './components/header/header';
 import { ModalPage } from './components/page/modalPage/modalPage';
+import { DataBasa } from './indexedDB/indexedDB';
 
 export class App {
   private readonly header: Header;
@@ -16,24 +17,26 @@ export class App {
   public modalWindow(): void {
     const MODALPAGE: Element | null = document.querySelector('.modal-page');
     const MODALBUTTON: Element | null = document.querySelector('.header-games__btn');
+    const BTNADD: Element | null = document.querySelector('#btn-add');
     const BTNCLOSE: Element | null = document.querySelector('#btn-close');
-    const scroll: number = window.innerWidth - document.documentElement.clientWidth;
+
+    const myDb = new DataBasa();
+    myDb.init('krikun1983');
 
     MODALBUTTON?.addEventListener('click', (): void => {
-      MODALPAGE?.classList.remove('hidden');
-      this.rootElement.style.overflow = 'hidden';
-      this.rootElement.style.paddingRight = scroll + 'px';
+      this.modalPage.open();
+    })
+    BTNADD?.addEventListener('click', (event: Event): void => {
+      event.preventDefault();
+      myDb.write();
+      this.modalPage.close();
     })
     BTNCLOSE?.addEventListener('click', (): void => {
-      MODALPAGE?.classList.add('hidden');
-      this.rootElement.style.overflow = '';
-      this.rootElement.style.paddingRight = '0px';
+      this.modalPage.close();
     })
-    MODALPAGE?.addEventListener('click', (event) => {
+    MODALPAGE?.addEventListener('click', (event): void => {
       if (event.target === MODALPAGE) {
-        MODALPAGE?.classList.add('hidden');
-        this.rootElement.style.overflow = '';
-        this.rootElement.style.paddingRight = '0px';
+        this.modalPage.close();
       }
     })
   }
