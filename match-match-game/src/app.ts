@@ -4,6 +4,7 @@ import { DataBasa } from './indexedDB/indexedDB';
 
 export class App {
   private readonly header: Header;
+
   private readonly modalPage: ModalPage;
 
   constructor(private readonly rootElement: HTMLElement) {
@@ -11,7 +12,7 @@ export class App {
     this.modalPage = new ModalPage();
     this.rootElement.appendChild(this.modalPage.element);
     this.rootElement.appendChild(this.header.element);
-    this.header.addClassActive();
+    // this.header.addClassActive();
   }
 
   public modalWindow(): void {
@@ -35,7 +36,7 @@ export class App {
       } else {
         BTNADD?.classList.add('invalid');
       }
-    }
+    };
     const validateField = () => {
       if (firstName?.validity.valid) {
         firstName.classList.remove('input-invalid');
@@ -60,53 +61,50 @@ export class App {
         email?.classList.add('input-invalid');
         emailCheck?.removeAttribute('checked');
       }
-    }
+    };
     // validateField();
     firstName?.addEventListener('input', () => {
       validateField();
-      validate()
-    })
+      validate();
+    });
     lastName?.addEventListener('input', () => {
       validateField();
-      validate()
-    })
+      validate();
+    });
     email?.addEventListener('input', () => {
       validateField();
-      validate()
-    })
+      validate();
+    });
 
-    const myDb = new DataBasa();//////////////////
-    myDb.init('krikun1983');//////////////////////////////////
+    const myDb = new DataBasa();
+    myDb.init('krikun1983');
 
     BTNMODAL?.addEventListener('click', (): void => {
       this.modalPage.open();
-    })
-
+    });
     BTNADD?.addEventListener('click', (event: Event): void => {
-      if (BTNADD?.classList.contains('invalid')) { return }
+      if (BTNADD?.classList.contains('invalid')) return;
       event.preventDefault();
-      myDb.write();///////////////////////////////////////////
+      myDb.write();
       this.modalPage.close();
       BTNMODAL?.classList.add('hidden');
       BTNSTARTGAME?.classList.remove('hidden');
-    })
+    });
     BTNCLOSE?.addEventListener('click', (): void => {
       this.modalPage.close();
-    })
+    });
     MODALPAGE?.addEventListener('click', (event): void => {
       if (event.target === MODALPAGE) {
         this.modalPage.close();
       }
-    })
+    });
     BTNSTARTGAME?.addEventListener('click', (): void => {
       BTNSTARTGAME?.classList.add('hidden');
       BTNSTARTSTOP?.classList.remove('hidden');
-    })
+    });
     BTNSTARTSTOP?.addEventListener('click', (): void => {
       BTNSTARTSTOP?.classList.add('hidden');
       BTNSTARTGAME?.classList.remove('hidden');
-    })
+    });
   }
 }
-
-

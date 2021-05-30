@@ -25,6 +25,3 @@ export class HeaderMenu extends BaseComponent {
   `;
   }
 }
-
-
-

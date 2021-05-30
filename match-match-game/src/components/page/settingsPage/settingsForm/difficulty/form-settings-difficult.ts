@@ -13,6 +13,7 @@ export class FormSettingsDifficulty extends BaseComponent {
     this.selectDiffculty = new SelectDiffculty();
     this.element.appendChild(this.selectDiffculty.element);
   }
+
   public render(): HTMLElement {
     return this.element;
   }

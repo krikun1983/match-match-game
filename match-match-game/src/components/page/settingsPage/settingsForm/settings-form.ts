@@ -5,6 +5,7 @@ import './settings-form.scss';
 
 export class SettingsForm extends BaseComponent {
   private readonly formSettingsGameCards: FormSettingsGameCards;
+
   private readonly formSettingsDifficulty: FormSettingsDifficulty;
 
   constructor() {

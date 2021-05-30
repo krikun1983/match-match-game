@@ -13,6 +13,7 @@ export class FormSettingsGameCards extends BaseComponent {
     this.selectGameCards = new SelectGameCards();
     this.element.appendChild(this.selectGameCards.element);
   }
+
   public render(): HTMLElement {
     return this.element;
   }

@@ -9,7 +9,7 @@ export class Router {
     }
 
     throw new Error(
-      "Route for 404 page wasn't found! Please, provide route for 404 page in your routes array."
+      "Route for 404 page wasn't found! Please, provide route for 404 page in your routes array.",
     );
   }
 
@@ -25,13 +25,14 @@ export class Router {
 
   private getCurrentRoute(): Route {
     const currentRoute = this.routes.find(
-      (route) => route.path === this.getCurrentPath()
+      (route) => route.path === this.getCurrentPath(),
     );
 
     return currentRoute ?? this.notFound404Route;
   }
 
   private getCurrentPath(): string {
+    console.log(this);
     return window.location.hash.substr(1).replace(/\//gi, '/');
   }
 

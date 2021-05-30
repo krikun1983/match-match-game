@@ -20,7 +20,7 @@ export class GamePage extends BaseComponent {
   }
 
   public render(): HTMLElement {
-    this.start()
+    this.start();
     return this.element;
   }
 }

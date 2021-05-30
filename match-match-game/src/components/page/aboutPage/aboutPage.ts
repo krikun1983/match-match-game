@@ -9,6 +9,7 @@ export class AboutPage extends BaseComponent {
     this.container = new AboutContainer();
     this.element.appendChild(this.container.element);
   }
+
   public render(): HTMLElement {
     return this.element;
   }

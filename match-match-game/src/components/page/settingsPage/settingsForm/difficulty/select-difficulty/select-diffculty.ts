@@ -12,8 +12,8 @@ export class SelectDiffculty extends BaseComponent {
       <option value="2">6x6</option>
     `;
 
-    this.element.addEventListener('change', (): void => {
-      this.index = (<HTMLSelectElement>this.element).selectedIndex;
-    })
+    // this.element.addEventListener('change', (): void => {
+    //   this.index = (<HTMLSelectElement>this.element).selectedIndex;
+    // });
   }
 }

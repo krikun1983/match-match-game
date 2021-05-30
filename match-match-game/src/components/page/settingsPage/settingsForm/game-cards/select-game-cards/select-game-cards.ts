@@ -12,8 +12,8 @@ export class SelectGameCards extends BaseComponent {
       <option value="2">peoples</option>
     `;
 
-    this.element.addEventListener('change', (): void => {
-      this.index = (<HTMLSelectElement>this.element).selectedIndex;
-    })
+    // this.element.addEventListener('change', (): void => {
+    //   this.index = (<HTMLSelectElement>this.element).selectedIndex;
+    // });
   }
 }

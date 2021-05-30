@@ -1,7 +1,8 @@
-import { ModalPage } from "../components/page/modalPage/modalPage";
+import { ModalPage } from '../components/page/modalPage/modalPage';
 
 export class DataBasa {
   public db!: IDBDatabase;
+
   private readonly modalPage: ModalPage;
 
   constructor() {
@@ -14,26 +15,26 @@ export class DataBasa {
 
     dbReq.onupgradeneeded = () => {
       const database = dbReq.result;
-      let store = database.createObjectStore('persons', { keyPath: "email", autoIncrement: true });
+      const store = database.createObjectStore('persons', { keyPath: 'email', autoIncrement: true });
       store.createIndex('email', 'email', { unique: true });
       store.createIndex('score', 'score', { unique: false });
       this.db = database;
-    }
+    };
 
     dbReq.onsuccess = () => {
       this.db = dbReq.result;
-    }
+    };
 
     dbReq.onerror = () => {
-      alert('error opening database ' + dbReq.result);
-    }
+      alert(`error opening database ${dbReq.result}`);
+    };
   }
 
-  private addPersons(player: object): void {
+  private addPersons(player: { firstName: string; lastName: string; email: string; }): void {
     let tx: IDBTransaction | null = null;
     tx = this.db.transaction(['persons'], 'readwrite');
-    let store = tx.objectStore('persons');
-    let note = player;
+    const store = tx.objectStore('persons');
+    const note = player;
     store.put(note);
   }
 

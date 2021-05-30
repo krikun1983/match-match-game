@@ -20,6 +20,7 @@ export class AboutContainer extends BaseComponent {
     </div>
     `;
   }
+
   public render(): HTMLElement {
     return this.element;
   }

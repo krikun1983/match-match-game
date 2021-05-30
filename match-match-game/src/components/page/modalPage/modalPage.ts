@@ -3,14 +3,15 @@ import './modalPage.scss';
 
 export class ModalPage extends BaseComponent {
   private firstName = document.querySelector('#firstName');
+
   private lastName = document.querySelector('#lastName');
+
   private email = document.querySelector('#email');
 
-  // private isCheckFirstName = '[(~!@#\\$%*()_—+=|:;\"\'\`<>,.?/^0-9)]{1,30}';
-  // '
-  // private isCheckFirstName = new RegExp(/^[A-Za-z0-9_!#$%&'*+/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/);
-  private isCheckNames: string = '[^~!@#$%*()_—+=|:;<>,.?/^`\"0-9]{1,30}';
-  private isCheckEmail = '^([a-zA-Z0-9_-]+\.)*[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-z0-9_-]+)+\.[a-z]{2,6}$';
+  private isCheckNames = '[^0-9][^~!@#$%*()_—+=|:;<>,.?/^`"]{1,30}';
+
+  private isCheckEmail = '^([a-zA-Z0-9_-]+.)*[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(.[a-z0-9_-]+)+.[a-z]{2,6}$';
+
   private isTitleNames = 'Нельзя использовать специальные символы и цифры';
 
   constructor() {
@@ -69,9 +70,9 @@ export class ModalPage extends BaseComponent {
       lastName: (this.lastName as HTMLInputElement).value,
       email: (this.email as HTMLInputElement).value,
     };
-    (<HTMLInputElement>this.firstName).value = '';
-    (<HTMLInputElement>this.lastName).value = '';
-    (<HTMLInputElement>this.email).value = '';
+    (this.firstName as HTMLInputElement).value = '';
+    (this.lastName as HTMLInputElement).value = '';
+    (this.email as HTMLInputElement).value = '';
     return IUserData;
   }
 

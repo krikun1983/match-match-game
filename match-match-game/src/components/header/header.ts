@@ -30,16 +30,17 @@ export class Header extends BaseComponent {
     this.headerContainer.element.appendChild(this.headerGames.element);
     this.headerNav.element.appendChild(this.headerMenu.element);
   }
-  addClassActive(): void {
+
+  static addClassActive(): void {
     const MENU = document.querySelector('.menu');
     const MENUITEMS = document.querySelectorAll('.menu__item > a');
     MENU?.addEventListener('click', (event: Event): void => {
-      MENUITEMS.forEach(item => {
+      MENUITEMS.forEach((item) => {
         item.classList.remove('active');
-      })
+      });
       if (event.target instanceof Element) {
         event.target.classList.add('active');
       }
-    })
+    });
   }
 }
