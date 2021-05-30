@@ -1,5 +1,12 @@
+import { ModalPage } from "../components/page/modalPage/modalPage";
+
 export class DataBasa {
   public db!: IDBDatabase;
+  private readonly modalPage: ModalPage;
+
+  constructor() {
+    this.modalPage = new ModalPage();
+  }
 
   public init(dbName: string, version?: number): void {
     const iDB = window.indexedDB;
@@ -15,7 +22,6 @@ export class DataBasa {
 
     dbReq.onsuccess = () => {
       this.db = dbReq.result;
-      console.log(this.db);
     }
 
     dbReq.onerror = () => {
@@ -23,21 +29,15 @@ export class DataBasa {
     }
   }
 
-  private addPersons(firstName: string, lastName: string, email: string): void {
+  private addPersons(player: object): void {
     let tx: IDBTransaction | null = null;
     tx = this.db.transaction(['persons'], 'readwrite');
     let store = tx.objectStore('persons');
-    let note = { 'firstName': firstName, 'lastName': lastName, 'email': email, timestamp: Date.now() };
+    let note = player;
     store.put(note);
   }
 
   public write(): void {
-    let firstName = document.getElementById('firstName');
-    let lastName = document.getElementById('lastName');
-    let email = document.getElementById('email');
-    this.addPersons((<HTMLInputElement>firstName)?.value, (<HTMLInputElement>lastName)?.value, (<HTMLInputElement>email)?.value);
-    (<HTMLInputElement>firstName).value = '';
-    (<HTMLInputElement>lastName).value = '';
-    (<HTMLInputElement>email).value = '';
+    this.addPersons(this.modalPage.get());
   }
 }

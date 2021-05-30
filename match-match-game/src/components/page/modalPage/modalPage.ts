@@ -2,6 +2,16 @@ import { BaseComponent } from '../../base-components';
 import './modalPage.scss';
 
 export class ModalPage extends BaseComponent {
+  private firstName = document.querySelector('#firstName');
+  private lastName = document.querySelector('#lastName');
+  private email = document.querySelector('#email');
+
+  // private isCheckFirstName = '[(~!@#\\$%*()_—+=|:;\"\'\`<>,.?/^0-9)]{1,30}';
+  // '
+  // private isCheckFirstName = new RegExp(/^[A-Za-z0-9_!#$%&'*+/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/);
+  private isCheckNames: string = '[^~!@#$%*()_—+=|:;<>,.?/^`\"0-9]{1,30}';
+  private isCheckEmail = '^([a-zA-Z0-9_-]+\.)*[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-z0-9_-]+)+\.[a-z]{2,6}$';
+  private isTitleNames = 'Нельзя использовать специальные символы и цифры';
 
   constructor() {
     super('div', ['modal-page', 'hidden']);
@@ -14,28 +24,28 @@ export class ModalPage extends BaseComponent {
                 <div class="modal-wrapper__inputs_wrap">
                   <div class="modal-wrapper__inputs_field">
                     <label for="firstName">First Name</label>
-                    <input id="firstName" type="text" required>
+                    <input id="firstName" class="input-invalid" type="text" pattern='${this.isCheckNames}' title="${this.isTitleNames}" required>
                   </div>
                   <div class="modal-wrapper__inputs_check">
-                    <input type="checkbox">
+                    <input id="firstNameCheck" type="checkbox">
                   </div>
               </div>
               <div class="modal-wrapper__inputs_wrap">
                 <div class="modal-wrapper__inputs_field">
                   <label for="lastName">Last Name</label>
-                  <input id="lastName" type="text" required>
+                  <input id="lastName"class="input-invalid" type="text" pattern='${this.isCheckNames}' title="${this.isTitleNames}" required>
                 </div>
                 <div class="modal-wrapper__inputs_check">
-                  <input type="checkbox">
+                  <input id="lastNameCheck" type="checkbox">
                 </div>
               </div>
               <div class="modal-wrapper__inputs_wrap">
                 <div class="modal-wrapper__inputs_field">
                   <label for="email">E-mail</label>
-                  <input id="email" type="email" required>
+                  <input id="email" class="input-invalid" type="email" pattern='${this.isCheckEmail}' required>
                 </div>
                 <div class="modal-wrapper__inputs_check">
-                  <input type="checkbox">
+                  <input id="emailCheck" type="checkbox">
                 </div>
               </div>
             </div>
@@ -43,12 +53,26 @@ export class ModalPage extends BaseComponent {
             </div>
           </div>
           <div class="modal-wrapper_btns">
-            <button id='btn-add' type="submit">Add user</button>
+            <button id='btn-add' class="btn-add invalid" type="submit">Add user</button>
             <button id='btn-close' type="button">cancel</button>
           </div>
         </form>
       </div>
     `;
+  }
+
+  get() {
+    // const isCheck = /[-()~!@#$%*_—+=|:;"'`<>,.?/^]/.test((firstName as HTMLInputElement).value)
+    // console.log(isCheck);
+    const IUserData = {
+      firstName: (this.firstName as HTMLInputElement).value,
+      lastName: (this.lastName as HTMLInputElement).value,
+      email: (this.email as HTMLInputElement).value,
+    };
+    (<HTMLInputElement>this.firstName).value = '';
+    (<HTMLInputElement>this.lastName).value = '';
+    (<HTMLInputElement>this.email).value = '';
+    return IUserData;
   }
 
   open(): void {

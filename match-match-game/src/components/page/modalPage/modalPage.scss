@@ -57,13 +57,16 @@
       line-height: 16px;
       color: rgba(0, 0, 0, 0.5);
     }
-    &_field > input {
-      font-size: 16px;
-      line-height: 24px;
-      background-color: rgba(255, 255, 255, 0.5);
-      border: none;
-      border-radius: 4px;
-    }
+    // &_field > input {
+    //   font-size: 16px;
+    //   line-height: 24px;
+    //   background-color: rgba(255, 255, 255, 0.5);
+    //   border: none;
+    //   border-radius: 4px;
+    //   &.input-invalid {
+    //     background-color: rgb(246, 146, 146);
+    //   }
+    // }
     &_check {
       display: flex;
       justify-content: center;
@@ -118,6 +121,9 @@
     -webkit-box-shadow: 0px 2px 4px 0px rgba(34, 60, 80, 0.4);
     -moz-box-shadow: 0px 2px 4px 0px rgba(34, 60, 80, 0.4);
     box-shadow: 0px 2px 4px 0px rgba(34, 60, 80, 0.4);
+    // &.invalid {
+
+    // }
   }
   & > button[type=button] {
     cursor: pointer;
@@ -136,6 +142,44 @@
   }
 }
 
+#btn-add.invalid {
+  cursor: default;
+  background-color: #d0d1d4;
+}
+
 .hidden {
   display: none;
+}
+
+#firstName {
+  font-size: 16px;
+  line-height: 24px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-radius: 4px;
+  &.input-invalid {
+    background-color: rgb(255, 176, 176);
+  }
+}
+
+#lastName {
+  font-size: 16px;
+  line-height: 24px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-radius: 4px;
+  &.input-invalid {
+    background-color: rgb(255, 176, 176);
+  }
+}
+
+#email {
+  font-size: 16px;
+  line-height: 24px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-radius: 4px;
+  &.input-invalid {
+    background-color: rgb(255, 176, 176);
+  }
 }
