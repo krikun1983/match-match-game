@@ -12,7 +12,7 @@ export class App {
     this.modalPage = new ModalPage();
     this.rootElement.appendChild(this.modalPage.element);
     this.rootElement.appendChild(this.header.element);
-    // this.header.addClassActive();
+    this.header.addClassActive();
   }
 
   public modalWindow(): void {

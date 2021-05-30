@@ -31,7 +31,8 @@ export class Header extends BaseComponent {
     this.headerNav.element.appendChild(this.headerMenu.element);
   }
 
-  static addClassActive(): void {
+  public addClassActive(): void {
+    console.log(this);
     const MENU = document.querySelector('.menu');
     const MENUITEMS = document.querySelectorAll('.menu__item > a');
     MENU?.addEventListener('click', (event: Event): void => {

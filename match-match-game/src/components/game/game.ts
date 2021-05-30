@@ -19,10 +19,11 @@ export class Game extends BaseComponent {
     this.element.appendChild(this.cardsField.element);
   }
 
-  newGame(images: string[]) {
+  newGame(images: string[], diffculty: number) {
     this.cardsField.clear();
-    const cards = images
-      .concat(images)
+    const imagesForGame = images.slice(0, (diffculty * diffculty) / 2);
+    const cards = imagesForGame
+      .concat(imagesForGame)
       .map((url) => new Card(url))
       .sort(() => Math.random() - 0.5);
 

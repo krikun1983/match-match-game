@@ -12,11 +12,13 @@ export class GamePage extends BaseComponent {
   }
 
   async start() {
+    localStorage.setItem('select-diffculty', '3');
+    const DIFFICULT_CAME_SETTINGS: string | number | null = localStorage.getItem('select-diffculty');
     const res = await fetch('../images.json');
     const categories: ImageCategoryModel[] = await res.json();
     const cat = categories[0];
     const images = cat.images.map((name) => `${cat.category}/${name}`);
-    this.game.newGame(images);
+    this.game.newGame(images, Number(DIFFICULT_CAME_SETTINGS));
   }
 
   public render(): HTMLElement {
