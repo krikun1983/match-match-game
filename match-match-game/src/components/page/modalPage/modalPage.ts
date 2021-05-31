@@ -63,8 +63,6 @@ export class ModalPage extends BaseComponent {
   }
 
   get() {
-    // const isCheck = /[-()~!@#$%*_—+=|:;"'`<>,.?/^]/.test((firstName as HTMLInputElement).value)
-    // console.log(isCheck);
     const IUserData = {
       firstName: (this.firstName as HTMLInputElement).value,
       lastName: (this.lastName as HTMLInputElement).value,

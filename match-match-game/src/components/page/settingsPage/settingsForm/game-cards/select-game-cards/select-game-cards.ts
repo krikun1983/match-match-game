@@ -7,13 +7,15 @@ export class SelectGameCards extends BaseComponent {
   constructor() {
     super('select', ['select-game-cards']);
     this.element.innerHTML = `
-      <option selected>select game cards type</option>
-      <option value="1">cars</option>
-      <option value="2">peoples</option>
+      <option value="0" selected>select game cards type</option>
+      <option value="0">animals</option>
+      <option value="1">toys</option>
     `;
 
-    // this.element.addEventListener('change', (): void => {
-    //   this.index = (<HTMLSelectElement>this.element).selectedIndex;
-    // });
+    this.element.addEventListener('change', (): void => {
+      this.index = +(this.element as HTMLSelectElement).value;
+      console.log(this.index);
+      localStorage.setItem('select-game-cards', this.index.toString());
+    });
   }
 }
