@@ -9,7 +9,7 @@ export class ScorePersone extends BaseComponent {
   private readonly score: Score;
 
   constructor() {
-    super('div', ['score-persons']);
+    super('div', ['score-persons', 'hidden']);
     this.persone = new Persone();
     this.score = new Score();
     this.element.appendChild(this.persone.element);

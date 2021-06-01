@@ -25,18 +25,17 @@ export class Router {
 
   private getCurrentRoute(): Route {
     const currentRoute = this.routes.find(
-      (route) => route.path === this.getCurrentPath(),
+      (route) => route.path === Router.getCurrentPath(),
     );
 
     return currentRoute ?? this.notFound404Route;
   }
 
-  private getCurrentPath(): string {
-    console.log(this);
+  private static getCurrentPath(): string {
     return window.location.hash.substr(1).replace(/\//gi, '/');
   }
 
   private navigateToDefaultRoute(): void {
-    window.location.href = `${window.location.origin}#${this.getCurrentPath() || this.routes[0]?.path}`;
+    window.location.href = `${window.location.origin}#${Router.getCurrentPath() || this.routes[0]?.path}`;
   }
 }

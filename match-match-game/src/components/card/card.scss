@@ -1,6 +1,6 @@
 .card-container {
   cursor: pointer;
-  margin: 0.8%;
+  margin: 0.55%;
   flex: 1 0 10%;
   display: flex;
   justify-content: center;
@@ -17,7 +17,7 @@
 
 .card {
   position: relative;
-  width: 160px;
+  width: 150px;
   height: 160px;
   transform-style: preserve-3d;
   transform-origin: right;
@@ -56,7 +56,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 100;
-  width: 160px;
+  width: 150px;
   height: 160px;
   background-color: green;
   border-radius: .4rem;
@@ -71,7 +71,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 100;
-  width: 160px;
+  width: 150px;
   height: 160px;
   background-color: red;
   border-radius: .4rem;

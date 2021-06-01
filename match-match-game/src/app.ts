@@ -12,10 +12,11 @@ export class App {
     this.modalPage = new ModalPage();
     this.rootElement.appendChild(this.modalPage.element);
     this.rootElement.appendChild(this.header.element);
-    this.header.addClassActive();
+    Header.addClassActive();
   }
 
   public modalWindow(): void {
+    localStorage.setItem('select-diffculty', '4');
     const MODALPAGE: Element | null = document.querySelector('.modal-page');
     const BTNMODAL: Element | null = document.querySelector('.header-games__btn__reg');
     const BTNADD: Element | null = document.querySelector('#btn-add');
@@ -29,6 +30,10 @@ export class App {
     const firstNameCheck: HTMLInputElement | null = document.querySelector('#firstNameCheck');
     const lastNameCheck: HTMLInputElement | null = document.querySelector('#lastNameCheck');
     const emailCheck: HTMLInputElement | null = document.querySelector('#emailCheck');
+
+    const about: Element | null = document.querySelector('#about');
+    const score: Element | null = document.querySelector('#score');
+    const settings: Element | null = document.querySelector('#settings');
 
     const validate = () => {
       if (firstName?.validity.valid && lastName?.validity.valid && email?.validity.valid) {
@@ -103,6 +108,19 @@ export class App {
       BTNSTARTSTOP?.classList.remove('hidden');
     });
     BTNSTARTSTOP?.addEventListener('click', (): void => {
+      BTNSTARTSTOP?.classList.add('hidden');
+      BTNSTARTGAME?.classList.remove('hidden');
+    });
+
+    about?.addEventListener('click', (): void => {
+      BTNSTARTSTOP?.classList.add('hidden');
+      BTNSTARTGAME?.classList.remove('hidden');
+    });
+    score?.addEventListener('click', (): void => {
+      BTNSTARTSTOP?.classList.add('hidden');
+      BTNSTARTGAME?.classList.remove('hidden');
+    });
+    settings?.addEventListener('click', (): void => {
       BTNSTARTSTOP?.classList.add('hidden');
       BTNSTARTGAME?.classList.remove('hidden');
     });

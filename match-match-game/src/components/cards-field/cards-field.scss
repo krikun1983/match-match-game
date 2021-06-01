@@ -1,8 +1,21 @@
 .cards-field {
-  width: 80%;
+  width: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
 }
+
+.cards-field_three {
+  width: 60%;
+}
+
+.cards-field_four {
+  width: 40%;
+}
+
+.cards-field_six {
+  width: 80%;
+}
+

@@ -6,13 +6,12 @@ export class GamePage extends BaseComponent {
   private readonly game: Game;
 
   constructor() {
-    super('section', ['game']);
+    super('section', ['game-section']);
     this.game = new Game();
     this.element.appendChild(this.game.element);
   }
 
   async start() {
-    localStorage.setItem('select-diffculty', '3');
     const DIFFICULT_CAME_SETTINGS: string | number | null = localStorage.getItem('select-diffculty');
     const SELECTED_CAME_SETTINGS: string | number | null = localStorage.getItem('select-game-cards');
     const res = await fetch('../images.json');
