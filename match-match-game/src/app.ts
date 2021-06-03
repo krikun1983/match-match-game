@@ -23,28 +23,49 @@ export class App {
   public modalWindow(): void {
     localStorage.setItem('select-diffculty', '4');
     const MODALPAGE: Element | null = document.querySelector('.modal-page');
-    const BTNMODAL: Element | null = document.querySelector('.header-games__btn__reg');
-    const MODALSCOREOPEN: Element | null = document.querySelector('.modal-page-score');
-    const BTNMODALSCORECLOSE: Element | null = document.querySelector('.score__button');
+    const BTNMODAL: Element | null = document.querySelector(
+      '.header-games__btn__reg',
+    );
+    const MODALSCOREOPEN: Element | null =
+      document.querySelector('.modal-page-score');
+    const BTNMODALSCORECLOSE: Element | null =
+      document.querySelector('.score__button');
     const BTNADD: Element | null = document.querySelector('#btn-add');
     const BTNADDLINK: Element | null = document.querySelector('.btn-add-link');
     const BTNCLOSE: Element | null = document.querySelector('#btn-close');
-    const BTNSTARTGAME: Element | null = document.querySelector('.header-games__btn__start');
-    const BTNSTARTSTOP: Element | null = document.querySelector('.header-games__btn__stop');
+    const BTNSTARTGAME: Element | null = document.querySelector(
+      '.header-games__btn__start',
+    );
+    const BTNSTARTSTOP: Element | null = document.querySelector(
+      '.header-games__btn__stop',
+    );
+    const firstName: HTMLInputElement | null =
+      document.querySelector('#firstName');
 
-    const firstName: HTMLInputElement | null = document.querySelector('#firstName');
-    const lastName: HTMLInputElement | null = document.querySelector('#lastName');
+    const lastName: HTMLInputElement | null =
+      document.querySelector('#lastName');
+
     const email: HTMLInputElement | null = document.querySelector('#email');
-    const firstNameCheck: HTMLInputElement | null = document.querySelector('#firstNameCheck');
-    const lastNameCheck: HTMLInputElement | null = document.querySelector('#lastNameCheck');
-    const emailCheck: HTMLInputElement | null = document.querySelector('#emailCheck');
+
+    const firstNameCheck: HTMLInputElement | null =
+      document.querySelector('#firstNameCheck');
+
+    const lastNameCheck: HTMLInputElement | null =
+      document.querySelector('#lastNameCheck');
+
+    const emailCheck: HTMLInputElement | null =
+      document.querySelector('#emailCheck');
 
     const about: Element | null = document.querySelector('#about');
     const score: Element | null = document.querySelector('#score');
     const settings: Element | null = document.querySelector('#settings');
 
     const validate = () => {
-      if (firstName?.validity.valid && lastName?.validity.valid && email?.validity.valid) {
+      if (
+        firstName?.validity.valid &&
+        lastName?.validity.valid &&
+        email?.validity.valid
+      ) {
         BTNADD?.classList.remove('invalid');
       } else {
         BTNADD?.classList.add('invalid');

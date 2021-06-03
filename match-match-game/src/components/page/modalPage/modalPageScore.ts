@@ -7,7 +7,7 @@ export class ModalPageScore extends BaseComponent {
     this.element.innerHTML = `
       <div class="modal-wrapper-score">
         <p class="score__text">Congratulations</p>
-        <a href='#/score' class="score__button">ок</a>
+        <button class="score__button">ок</button>
       </div>
     `;
   }

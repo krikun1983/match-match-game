@@ -42,7 +42,8 @@ export class Game extends BaseComponent {
 
   private static сhangeWidthFieldCards(): void {
     const cardsField = document.querySelector('.cards-field');
-    const DIFFICULT_CAME_TEMP: string | number | null = localStorage.getItem('select-diffculty');
+    const DIFFICULT_CAME_TEMP: string | number | null =
+      localStorage.getItem('select-diffculty');
     if (DIFFICULT_CAME_TEMP === '3') {
       cardsField?.classList.add('cards-field_three');
     }
@@ -74,10 +75,10 @@ export class Game extends BaseComponent {
     const imagesForGame = images.slice(0, (diffculty * diffculty) / 2);
     const cards = imagesForGame
       .concat(imagesForGame)
-      .map((url) => new Card(url))
+      .map(url => new Card(url))
       .sort(() => Math.random() - 0.5);
 
-    cards.forEach((card) => {
+    cards.forEach(card => {
       card.element.addEventListener('click', () => this.cardHandler(card));
     });
     this.cardsField.addCards(cards);
@@ -110,19 +111,35 @@ export class Game extends BaseComponent {
     this.activeCard = undefined;
     this.isAnimation = false;
 
-    const isCardOpenAll: boolean = this.cardsField.cards.every((elem) => elem.isFlipped === false);
+    const isCardOpenAll: boolean = this.cardsField.cards.every(
+      elem => elem.isFlipped === false,
+    );
     const gameYes = Number(localStorage.getItem('select-diffculty'));
     if (isCardOpenAll) {
       this.timer_field.stop();
-      const MODALPAGE: Element | null = document.querySelector('.modal-page-score');
+      const MODALPAGE: Element | null =
+        document.querySelector('.modal-page-score');
       MODALPAGE?.classList.remove('hidden');
-      if (((gameYes * 2 - this.counter) * 100 - (this.timer_field.startTimer() * 10)) < 0) {
+      if (
+        (gameYes * 2 - this.counter) * 100 -
+          this.timer_field.startTimer() * 10 <
+        0
+      ) {
         localStorage.setItem('score', '0');
       } else {
-        localStorage.setItem('score', `${(gameYes * 2 - this.counter) * 100 - (this.timer_field.startTimer() * 10)}`);
+        localStorage.setItem(
+          'score',
+          `${
+            (gameYes * 2 - this.counter) * 100 -
+            this.timer_field.startTimer() * 10
+          }
+          `,
+        );
       }
       const score: Element | null = document.querySelector('.score__text');
-      score!.textContent = `Congratulations.You win with score ${localStorage.getItem('score')}`;
+      score!.textContent = `Congratulations.You win with score
+      ${localStorage.getItem('score')}
+      `;
     }
   }
 }

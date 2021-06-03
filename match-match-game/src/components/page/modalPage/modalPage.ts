@@ -8,13 +8,16 @@ export class ModalPage extends BaseComponent {
 
   private email = document.querySelector('#email');
 
-  private isCheckNames = '[^0-9][^~!@#$%*()_—+=|:;<>,.?/^`"]{1,30}';
+  private isCheckNames = '[^0-9][^~!@#$%*()_—+=|:;<>,.?/^`" ]{1,30}';
 
-  private isCheckEmail = '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-.]{2,20}\\.+[a-zA-Z0-9-.]{1,30}$';
+  private isCheckEmail =
+    '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-.]{2,20}\\.+[a-zA-Z0-9-.]{1,30}$';
 
-  private isTitleNames = 'Поле не может быть пустым, имя не может состоять из цифр, имя не может содержать служебные символы';
+  private isTitleNames =
+    'Поле не может быть пустым, имя не может состоять из цифр, имя не может содержать служебные символы';
 
-  private isTitleEmails = 'email не может быть пустым, должен соответствовать стандартному правилу формированию email';
+  private isTitleEmails =
+    'email не может быть пустым, должен соответствовать стандартному правилу формированию email';
 
   constructor() {
     super('div', ['modal-page', 'hidden']);
@@ -56,7 +59,7 @@ export class ModalPage extends BaseComponent {
             </div>
           </div>
           <div class="modal-wrapper_btns">
-            <button id='btn-add' class="btn-add invalid" type="submit">Add user</button>
+            <button id='btn-add' class="btn-add invalid" type="submit" onclick="window.location.href = '#/score';">Add user</button>
             <button id='btn-close' type="button">cancel</button>
           </div>
         </form>

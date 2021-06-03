@@ -2,7 +2,7 @@ import { Route } from '../app.api';
 
 export class Router {
   private get notFound404Route(): Route {
-    const notFound404route = this.routes.find((route) => route.path === '**');
+    const notFound404route = this.routes.find(route => route.path === '**');
 
     if (notFound404route) {
       return notFound404route;
@@ -25,7 +25,7 @@ export class Router {
 
   private getCurrentRoute(): Route {
     const currentRoute = this.routes.find(
-      (route) => route.path === Router.getCurrentPath(),
+      route => route.path === Router.getCurrentPath(),
     );
 
     return currentRoute ?? this.notFound404Route;
@@ -36,6 +36,7 @@ export class Router {
   }
 
   private navigateToDefaultRoute(): void {
-    window.location.href = `${window.location.origin}#${Router.getCurrentPath() || this.routes[0]?.path}`;
+    window.location.href = `${window.location.origin}#
+    ${Router.getCurrentPath() || this.routes[0]?.path}`;
   }
 }

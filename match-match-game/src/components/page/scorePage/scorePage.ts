@@ -7,7 +7,7 @@ export class ScorePage extends BaseComponent {
   constructor() {
     super('section', ['score']);
     this.container = new ScoreContainer();
-    this.element.appendChild(this.container.element);
+    this.element.appendChild(this.container.render());
   }
 
   public render(): HTMLElement {

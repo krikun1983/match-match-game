@@ -12,12 +12,16 @@ export class GamePage extends BaseComponent {
   }
 
   async start() {
-    const DIFFICULT_CAME_SETTINGS: string | number | null = localStorage.getItem('select-diffculty');
-    const SELECTED_CAME_SETTINGS: string | number | null = localStorage.getItem('select-game-cards');
+    const DIFFICULT_CAME_SETTINGS: string | number | null =
+      localStorage.getItem('select-diffculty');
+
+    const SELECTED_CAME_SETTINGS: string | number | null =
+      localStorage.getItem('select-game-cards');
+
     const res = await fetch('../images.json');
     const categories: ImageCategoryModel[] = await res.json();
     const cat = categories[Number(SELECTED_CAME_SETTINGS)];
-    const images = cat.images.map((name) => `${cat.category}/${name}`);
+    const images = cat.images.map(name => `${cat.category}/${name}`);
     this.game.newGame(images, Number(DIFFICULT_CAME_SETTINGS));
   }
 

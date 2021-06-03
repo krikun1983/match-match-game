@@ -1,6 +1,6 @@
 export interface CounterService {
   increment(): void;
-  subscribeOnCounter(callback: Function): number
+  subscribeOnCounter(callback: Function): number;
 }
 
 export class CounterServiceImplmentation implements CounterService {

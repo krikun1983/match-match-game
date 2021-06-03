@@ -2,7 +2,7 @@ import { BaseComponent } from '../../../../base-components';
 import './timer.scss';
 
 export class TimerField extends BaseComponent {
-  public seconds = -31;
+  public seconds = -4;
 
   public minutes = 0;
 
@@ -10,7 +10,7 @@ export class TimerField extends BaseComponent {
 
   public displayMinutes = '0';
 
-  public displaySecondsMinus = '-31';
+  public displaySecondsMinus = '-4';
 
   public interval = 0;
 
@@ -57,7 +57,7 @@ export class TimerField extends BaseComponent {
           <span class='timer-item timer-seconds'>${this.displaySecondsMinus}</span>
     `;
     }
-    const resultTimes = (+this.displayMinutes * 60) + +(this.displaySeconds);
+    const resultTimes = +this.displayMinutes * 60 + +this.displaySeconds;
     return resultTimes;
   }
 

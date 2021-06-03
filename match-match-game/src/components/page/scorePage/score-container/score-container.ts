@@ -8,15 +8,14 @@ export class ScoreContainer extends BaseComponent {
   constructor() {
     super('div', ['score-container']);
     this.element.setAttribute('id', 'privet');
-    this.element.innerHTML = this.displayNotes();
     this.myList = resData;
+    this.element.innerHTML = this.displayNotes();
   }
 
-  displayNotes = () => {
+  public displayNotes(): string {
     let listHTML = '<ul class="score-persons-db">';
     for (let i = 0; i < this.myList.length; i++) {
       const note = this.myList[i];
-      console.log(note);
       listHTML += `
       <li class="score-persons-db__item">
         Firstname: ${note.firstName} | Lastname: ${note.lastName} | Email: ${note.email} | Score:  ${note.score}
@@ -24,7 +23,7 @@ export class ScoreContainer extends BaseComponent {
       `;
     }
     return listHTML;
-  };
+  }
 
   public render(): HTMLElement {
     return this.element;

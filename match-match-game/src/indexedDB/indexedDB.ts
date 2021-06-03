@@ -2,6 +2,7 @@ import { ModalPage } from '../components/page/modalPage/modalPage';
 import './indexedDB.scss';
 
 export const resData: Array<any> = [];
+console.log(resData);
 export class DataBasa {
   public db!: IDBDatabase;
 
@@ -17,7 +18,10 @@ export class DataBasa {
 
     dbReq.onupgradeneeded = () => {
       const database = dbReq.result;
-      const store = database.createObjectStore('persons', { keyPath: 'email', autoIncrement: true });
+      const store = database.createObjectStore('persons', {
+        keyPath: 'email',
+        autoIncrement: true,
+      });
       store.createIndex('email', 'email', { unique: true });
       store.createIndex('score', 'score', { unique: false });
       this.db = database;
@@ -27,6 +31,7 @@ export class DataBasa {
       this.db = dbReq.result;
       // this.getAndDisplayNotes(this.db);
       this.getWrite();
+      // this.write();
     };
 
     dbReq.onerror = () => {
@@ -34,20 +39,27 @@ export class DataBasa {
     };
   }
 
-  public addPersons(player: { firstName: string; lastName: string; email: string; score: unknown }): Promise<any> {
-    return new Promise((resolve, reject) => {
-      const tx = this.db.transaction(['persons'], 'readwrite');
-      const store = tx.objectStore('persons');
-      const note = player;
-      store.put(note);
-      // tx.oncomplete = () => {
-      //   this.getAndDisplayNotes(this.db);
-      // };
-    });
+  public addPersons(player: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    score: unknown;
+  }) {
+    // return new Promise((resolve, reject) => {
+    const tx = this.db.transaction(['persons'], 'readwrite');
+    const store = tx.objectStore('persons');
+    const note = player;
+    store.put(note);
+    // tx.oncomplete = () => {
+
+    // };
+    // });
   }
 
-  public write(): void {
-    this.addPersons(this.modalPage.get());
+  public write(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.addPersons(this.modalPage.get());
+    });
   }
 
   public getWrite() {
@@ -64,7 +76,8 @@ export class DataBasa {
         cursor?.continue();
       };
       tx.oncomplete = () => {
-        resolve(result.result);
+        resolve(resData);
+        console.log(resData);
       };
     });
   }

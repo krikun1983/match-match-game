@@ -6,7 +6,7 @@ import { Route } from '../../app.api';
 export class Main extends BaseComponent {
   constructor(private router: Router) {
     super('main', ['main']);
-    this.router.onRouteChange((route) => this.renderCurrentComponent(route));
+    this.router.onRouteChange(route => this.renderCurrentComponent(route));
   }
 
   public init(): void {

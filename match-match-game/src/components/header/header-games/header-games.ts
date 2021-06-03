@@ -25,7 +25,10 @@ export class HeaderGamerPersons extends BaseComponent {
   }
 
   private static renderButtonStop() {
-    const button = new BaseComponent('a', ['header-games__btn__stop', 'hidden']);
+    const button = new BaseComponent('a', [
+      'header-games__btn__stop',
+      'hidden',
+    ]);
     button.element.innerHTML = 'stop game';
     button.element.setAttribute('href', '#/about');
     return button.element;

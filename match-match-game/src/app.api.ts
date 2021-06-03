@@ -12,10 +12,10 @@ export interface Route {
 }
 
 export interface MyRecord {
-  firstName: 'string',
-  lastName: 'string,'
-  email: 'string',
-  score: number,
+  firstName: string;
+  lastName: string;
+  email: string;
+  score: string;
 }
 
 export type RootElement = HTMLElement | null;
