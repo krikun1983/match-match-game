@@ -2,10 +2,10 @@ import './cards-field.scss';
 import { Card } from '../card/card';
 import { BaseComponent } from '../base-components';
 
-const SHOW_TIME = 30;
+const SHOW_TIME = 31;
 
 export class CardsField extends BaseComponent {
-  private cards: Card[] = [];
+  public cards: Card[] = [];
 
   constructor() {
     super('div', ['cards-field']);

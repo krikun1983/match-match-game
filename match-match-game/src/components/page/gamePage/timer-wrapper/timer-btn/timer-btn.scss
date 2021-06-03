@@ -1,0 +1,16 @@
+.timer-btn {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  width: 80px;
+  height: 40px;
+  border-radius: 4px;
+  color: #ffffff;
+  background-color: #2F95F0;
+  &:hover {
+    background-color: #78baf3;
+  }
+}

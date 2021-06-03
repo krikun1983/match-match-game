@@ -1,5 +1,7 @@
 import { ModalPage } from '../components/page/modalPage/modalPage';
+import './indexedDB.scss';
 
+export const resData: Array<any> = [];
 export class DataBasa {
   public db!: IDBDatabase;
 
@@ -23,6 +25,8 @@ export class DataBasa {
 
     dbReq.onsuccess = () => {
       this.db = dbReq.result;
+      // this.getAndDisplayNotes(this.db);
+      this.getWrite();
     };
 
     dbReq.onerror = () => {
@@ -30,15 +34,61 @@ export class DataBasa {
     };
   }
 
-  private addPersons(player: { firstName: string; lastName: string; email: string; }): void {
-    let tx: IDBTransaction | null = null;
-    tx = this.db.transaction(['persons'], 'readwrite');
-    const store = tx.objectStore('persons');
-    const note = player;
-    store.put(note);
+  public addPersons(player: { firstName: string; lastName: string; email: string; score: unknown }): Promise<any> {
+    return new Promise((resolve, reject) => {
+      const tx = this.db.transaction(['persons'], 'readwrite');
+      const store = tx.objectStore('persons');
+      const note = player;
+      store.put(note);
+      // tx.oncomplete = () => {
+      //   this.getAndDisplayNotes(this.db);
+      // };
+    });
   }
 
   public write(): void {
     this.addPersons(this.modalPage.get());
   }
+
+  public getWrite() {
+    return new Promise((resolve, reject) => {
+      let tx: IDBTransaction | null = null;
+      tx = this.db.transaction('persons', 'readonly');
+      const store = tx.objectStore('persons');
+      const result = store.index('score').openCursor(null, 'prev');
+      result.onsuccess = () => {
+        const cursor = result.result;
+        if (cursor) {
+          resolve(resData.push(cursor?.value));
+        }
+        cursor?.continue();
+      };
+      tx.oncomplete = () => {
+        resolve(result.result);
+      };
+    });
+  }
+  // public getAndDisplayNotes = (db: IDBDatabase) => {
+  //   const tx = db.transaction('persons', 'readonly');
+  //   const store = tx.objectStore('persons');
+  //   const result = store.getAll();
+  //   let nodeList: string = '';
+  //   tx.oncomplete = () => {
+  //     this.displayNotes(result.result);
+  //   };
+  // };
+
+  // public displayNotes = (notes: string | any[]) => {
+  //   let listHTML = '<ul class="score-persons-db">';
+  //   for (let i = 0; i < 10; i++) {
+  //     const note = notes[i];
+  //     listHTML += `
+  //     <li class="score-persons-db__item">
+  //       Firstname: ${note.firstName} | Lastname: ${note.lastName} | Email: ${note.email} | Score:  ${note.score}
+  //     </li>
+  //     `;
+  //   }
+  //   listHTML + '</ul>';
+  //   return listHTML;
+  // };
 }

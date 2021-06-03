@@ -11,4 +11,11 @@ export interface Route {
   Component: new () => Component;
 }
 
+export interface MyRecord {
+  firstName: 'string',
+  lastName: 'string,'
+  email: 'string',
+  score: number,
+}
+
 export type RootElement = HTMLElement | null;

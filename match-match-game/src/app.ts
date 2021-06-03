@@ -1,16 +1,21 @@
 import { Header } from './components/header/header';
 import { ModalPage } from './components/page/modalPage/modalPage';
+import { ModalPageScore } from './components/page/modalPage/modalPageScore';
 import { DataBasa } from './indexedDB/indexedDB';
 
 export class App {
   private readonly header: Header;
+
+  private readonly modalPageScore: ModalPageScore;
 
   private readonly modalPage: ModalPage;
 
   constructor(private readonly rootElement: HTMLElement) {
     this.header = new Header();
     this.modalPage = new ModalPage();
+    this.modalPageScore = new ModalPageScore();
     this.rootElement.appendChild(this.modalPage.element);
+    this.rootElement.appendChild(this.modalPageScore.element);
     this.rootElement.appendChild(this.header.element);
     Header.addClassActive();
   }
@@ -19,7 +24,10 @@ export class App {
     localStorage.setItem('select-diffculty', '4');
     const MODALPAGE: Element | null = document.querySelector('.modal-page');
     const BTNMODAL: Element | null = document.querySelector('.header-games__btn__reg');
+    const MODALSCOREOPEN: Element | null = document.querySelector('.modal-page-score');
+    const BTNMODALSCORECLOSE: Element | null = document.querySelector('.score__button');
     const BTNADD: Element | null = document.querySelector('#btn-add');
+    const BTNADDLINK: Element | null = document.querySelector('.btn-add-link');
     const BTNCLOSE: Element | null = document.querySelector('#btn-close');
     const BTNSTARTGAME: Element | null = document.querySelector('.header-games__btn__start');
     const BTNSTARTSTOP: Element | null = document.querySelector('.header-games__btn__stop');
@@ -83,8 +91,8 @@ export class App {
 
     const myDb = new DataBasa();
     myDb.init('krikun1983');
-
-    BTNMODAL?.addEventListener('click', (): void => {
+    BTNMODALSCORECLOSE?.addEventListener('click', (): void => {
+      MODALSCOREOPEN?.classList.add('hidden');
       this.modalPage.open();
     });
     BTNADD?.addEventListener('click', (event: Event): void => {
@@ -94,6 +102,7 @@ export class App {
       this.modalPage.close();
       BTNMODAL?.classList.add('hidden');
       BTNSTARTGAME?.classList.remove('hidden');
+      BTNSTARTSTOP?.classList.add('hidden');
     });
     BTNCLOSE?.addEventListener('click', (): void => {
       this.modalPage.close();
