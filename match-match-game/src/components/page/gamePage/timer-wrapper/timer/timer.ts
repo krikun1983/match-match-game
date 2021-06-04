@@ -2,7 +2,7 @@ import { BaseComponent } from '../../../../base-components';
 import './timer.scss';
 
 export class TimerField extends BaseComponent {
-  public seconds = -4;
+  public seconds = -31;
 
   public minutes = 0;
 
@@ -10,7 +10,7 @@ export class TimerField extends BaseComponent {
 
   public displayMinutes = '0';
 
-  public displaySecondsMinus = '-4';
+  public displaySecondsMinus = '-31';
 
   public interval = 0;
 

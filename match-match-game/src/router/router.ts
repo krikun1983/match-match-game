@@ -36,7 +36,6 @@ export class Router {
   }
 
   private navigateToDefaultRoute(): void {
-    window.location.href = `${window.location.origin}#
-    ${Router.getCurrentPath() || this.routes[0]?.path}`;
+    window.location.href = `${window.location.origin}#${Router.getCurrentPath() || this.routes[0]?.path}`;
   }
 }
