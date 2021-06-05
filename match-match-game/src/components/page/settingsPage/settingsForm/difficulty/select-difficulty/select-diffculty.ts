@@ -1,5 +1,5 @@
-import { BaseComponent } from '../../../../../base-components';
 import './select-diffculty.scss';
+import { BaseComponent } from '../../../../../base-components';
 
 export class SelectDiffculty extends BaseComponent {
   public index = 4;

@@ -1,5 +1,5 @@
-import { BaseComponent } from '../../base-components';
 import './settings-page.scss';
+import { BaseComponent } from '../../base-components';
 import { SettingsForm } from './settingsForm/settings-form';
 
 export class SettingsPage extends BaseComponent {

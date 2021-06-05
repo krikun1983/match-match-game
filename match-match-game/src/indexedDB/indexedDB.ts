@@ -1,7 +1,8 @@
 import { ModalPage } from '../components/page/modalPage/modalPage';
+import { MyRecord } from '../app.api';
 import './indexedDB.scss';
 
-export const resData: Array<any> = [];
+export const resData: Array<MyRecord> = [];
 
 export class DataBasa {
   public db!: IDBDatabase;
@@ -27,7 +28,7 @@ export class DataBasa {
       this.db = database;
     };
 
-    dbReq.onsuccess = () => {
+    dbReq.onsuccess = (): void => {
       this.db = dbReq.result;
       // this.getAndDisplayNotes(this.db);
       this.getWrite();
@@ -46,15 +47,24 @@ export class DataBasa {
     imagesLoad: string;
     score: unknown;
   }) {
-    // return new Promise((resolve, reject) => {
-    const tx = this.db.transaction(['persons'], 'readwrite');
-    const store = tx.objectStore('persons');
-    const note = player;
-    store.put(note);
-    // tx.oncomplete = () => {
+    return new Promise((resolve, reject) => {
+      const tx = this.db.transaction(['persons'], 'readwrite');
+      let transactionResult: MyRecord;
+      tx.oncomplete = () => {
+        resolve(transactionResult);
+      };
 
-    // };
-    // });
+      const store = tx.objectStore('persons');
+      const note = player;
+      // store.put(note);
+
+      const result = store.put(note);
+
+      result.onsuccess = (): IDBValidKey => {
+        return result.result;
+      }
+
+    });
   }
 
   public write(): Promise<any> {
@@ -63,22 +73,21 @@ export class DataBasa {
     });
   }
 
-  public getWrite() {
+  public getWrite(): Promise<Array<MyRecord>> {
     return new Promise((resolve, reject) => {
       let tx: IDBTransaction | null = null;
       tx = this.db.transaction('persons', 'readonly');
       const store = tx.objectStore('persons');
       const result = store.index('score').openCursor(null, 'prev');
-      result.onsuccess = () => {
+      result.onsuccess = (): void => {
         const cursor = result.result;
         if (cursor) {
-          resolve(resData.push(cursor?.value));
+          resData.push(cursor?.value);
         }
         cursor?.continue();
       };
-      tx.oncomplete = () => {
+      tx.oncomplete = (): void => {
         resolve(resData);
-        console.log(resData);
       };
     });
   }

@@ -15,7 +15,8 @@ export interface MyRecord {
   firstName: string;
   lastName: string;
   email: string;
-  score: string;
+  imagesLoad: string;
+  score: unknown;
 }
 
 export type RootElement = HTMLElement | null;

@@ -1,7 +1,7 @@
+import './settings-form.scss';
 import { BaseComponent } from '../../../base-components';
 import { FormSettingsDifficulty } from './difficulty/form-settings-difficult';
 import { FormSettingsGameCards } from './game-cards/form-settings-game-cards';
-import './settings-form.scss';
 
 export class SettingsForm extends BaseComponent {
   private readonly formSettingsGameCards: FormSettingsGameCards;

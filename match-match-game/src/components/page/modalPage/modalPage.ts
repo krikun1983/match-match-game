@@ -41,7 +41,7 @@ export class ModalPage extends BaseComponent {
               <div class="modal-wrapper__inputs_wrap">
                 <div class="modal-wrapper__inputs_field">
                   <label for="lastName">Last Name</label>
-                  <input id="lastName"class="input-invalid" type="text" pattern='${this.isCheckNames}' title="${this.isTitleEmails}" required>
+                  <input id="lastName" class="input-invalid" type="text" pattern='${this.isCheckNames}' title="${this.isTitleEmails}" required>
                 </div>
                 <div class="modal-wrapper__inputs_check">
                   <input id="lastNameCheck" type="checkbox">
@@ -91,8 +91,6 @@ export class ModalPage extends BaseComponent {
     const avatarImage = <HTMLFormElement>(
       document.querySelector('.bg-image-avatars')
     );
-    console.log(this);
-
     btnUploadFile?.addEventListener('change', e => {
       const file = URL.createObjectURL(btnUploadFile.files[0]);
       avatarImage!.src = file;
@@ -114,11 +112,93 @@ export class ModalPage extends BaseComponent {
   }
 
   open(): void {
-    this.element.classList.remove('hidden');
+    const MODAL_REG_PAGE_FIELD_AROUND: Element | null = document.querySelector('.modal-page');
+    MODAL_REG_PAGE_FIELD_AROUND?.classList.remove('hidden');
   }
 
   close(): void {
     this.element.classList.add('hidden');
+    const MODAL_REG_PAGE_FIELD_AROUND: Element | null = document.querySelector('.modal-page');
+    const MODAL_REG_PAGE_BTN_CLOSE: Element | null = document.querySelector('#btn-close');
+    MODAL_REG_PAGE_FIELD_AROUND?.addEventListener('click', (event): void => {
+      if (event.target === MODAL_REG_PAGE_FIELD_AROUND) {
+        this.element.classList.add('hidden');
+      }
+    });
+    MODAL_REG_PAGE_BTN_CLOSE?.addEventListener('click', (): void => {
+      this.element.classList.add('hidden');
+    });
+  }
+
+  validats() {
+    const firstName: HTMLInputElement | null =
+      document.querySelector('#firstName');
+
+    const lastName: HTMLInputElement | null =
+      document.querySelector('#lastName');
+
+    const email: HTMLInputElement | null = document.querySelector('#email');
+
+    const firstNameCheck: HTMLInputElement | null =
+      document.querySelector('#firstNameCheck');
+
+    const lastNameCheck: HTMLInputElement | null =
+      document.querySelector('#lastNameCheck');
+
+    const emailCheck: HTMLInputElement | null =
+      document.querySelector('#emailCheck');
+
+    const MODAL_REG_PAGE_BTN_ADD: Element | null = document.querySelector('#btn-add');
+
+    const validate = () => {
+      if (
+        firstName?.validity.valid &&
+        lastName?.validity.valid &&
+        email?.validity.valid
+      ) {
+        MODAL_REG_PAGE_BTN_ADD?.classList.remove('invalid');
+      } else {
+        MODAL_REG_PAGE_BTN_ADD?.classList.add('invalid');
+      }
+    };
+    const validateField = () => {
+      if (firstName?.validity.valid) {
+        firstName.classList.remove('input-invalid');
+        firstNameCheck?.setAttribute('checked', '');
+      } else {
+        firstName?.classList.add('input-invalid');
+        firstNameCheck?.removeAttribute('checked');
+      }
+
+      if (lastName?.validity.valid) {
+        lastName.classList.remove('input-invalid');
+        lastNameCheck?.setAttribute('checked', '');
+      } else {
+        lastName?.classList.add('input-invalid');
+        lastNameCheck?.removeAttribute('checked');
+      }
+
+      if (email?.validity.valid) {
+        email.classList.remove('input-invalid');
+        emailCheck?.setAttribute('checked', '');
+      } else {
+        email?.classList.add('input-invalid');
+        emailCheck?.removeAttribute('checked');
+      }
+    };
+    // validateField();
+    firstName?.addEventListener('input', () => {
+      validateField();
+      validate();
+    });
+    lastName?.addEventListener('input', () => {
+      validateField();
+      validate();
+    });
+    email?.addEventListener('input', () => {
+      validateField();
+      validate();
+    });
   }
 
   public render(): HTMLElement {

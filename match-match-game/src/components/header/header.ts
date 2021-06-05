@@ -33,14 +33,45 @@ export class Header extends BaseComponent {
 
   public static addClassActive(): void {
     const MENU = document.querySelector('.menu');
-    const MENUITEMS = document.querySelectorAll('.menu__item > a');
+    const MENU_ITEMS = document.querySelectorAll('.menu__item > a');
+    const MENU_ITEMS_ABOUT: Element | null = document.querySelector('#about');
+    const MENU_ITEMS_SCORE: Element | null = document.querySelector('#score');
+    const MENU_ITEMS_SETTINGS: Element | null = document.querySelector('#settings');
+    const HEADER_BTN_GAME_START: Element | null = document.querySelector(
+      '.header-games__btn__start',
+    );
+    const HEADER_BTN_GAME_STOP: Element | null = document.querySelector(
+      '.header-games__btn__stop',
+    );
+
     MENU?.addEventListener('click', (event: Event): void => {
-      MENUITEMS.forEach(item => {
+      MENU_ITEMS.forEach(item => {
         item.classList.remove('active');
       });
       if (event.target instanceof Element) {
         event.target.classList.add('active');
       }
+    });
+
+    MENU_ITEMS_ABOUT?.addEventListener('click', (): void => {
+      HEADER_BTN_GAME_STOP?.classList.add('hidden');
+      HEADER_BTN_GAME_START?.classList.remove('hidden');
+    });
+    MENU_ITEMS_SCORE?.addEventListener('click', (): void => {
+      HEADER_BTN_GAME_STOP?.classList.add('hidden');
+      HEADER_BTN_GAME_START?.classList.remove('hidden');
+    });
+    MENU_ITEMS_SETTINGS?.addEventListener('click', (): void => {
+      HEADER_BTN_GAME_STOP?.classList.add('hidden');
+      HEADER_BTN_GAME_START?.classList.remove('hidden');
+    });
+    HEADER_BTN_GAME_START?.addEventListener('click', (): void => {
+      HEADER_BTN_GAME_START?.classList.add('hidden');
+      HEADER_BTN_GAME_STOP?.classList.remove('hidden');
+    });
+    HEADER_BTN_GAME_STOP?.addEventListener('click', (): void => {
+      HEADER_BTN_GAME_STOP?.classList.add('hidden');
+      HEADER_BTN_GAME_START?.classList.remove('hidden');
     });
   }
 }

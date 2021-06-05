@@ -2,21 +2,21 @@ import { BaseComponent } from '../../../../base-components';
 import './timer.scss';
 
 export class TimerField extends BaseComponent {
-  public seconds = -31;
+  private seconds = -31;
 
-  public minutes = 0;
+  private minutes = 0;
 
-  public displaySeconds = '0';
+  private displaySeconds = '0';
 
-  public displayMinutes = '0';
+  private displayMinutes = '0';
 
-  public displaySecondsMinus = '-31';
+  private displaySecondsMinus = '-31';
 
-  public interval = 0;
+  private interval = 0;
 
-  public status = 'started';
+  private status = 'started';
 
-  public statusBTN = 'Stop';
+  private statusBTN = 'Stop';
 
   constructor() {
     super('div', ['timer-field']);
