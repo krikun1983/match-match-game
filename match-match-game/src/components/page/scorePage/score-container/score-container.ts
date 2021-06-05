@@ -14,10 +14,11 @@ export class ScoreContainer extends BaseComponent {
 
   public displayNotes(): string {
     let listHTML = '<ul class="score-persons-db">';
-    for (let i = 0; i < this.myList.length; i++) {
+    for (let i = 0; i < this.myList.length && i < 10; i++) {
       const note = this.myList[i];
       listHTML += `
       <li class="score-persons-db__item">
+      <img class="score-persons-avatar" src='${note.imagesLoad}'>
         Firstname: ${note.firstName} | Lastname: ${note.lastName} | Email: ${note.email} | Score:  ${note.score}
       </li>
       `;

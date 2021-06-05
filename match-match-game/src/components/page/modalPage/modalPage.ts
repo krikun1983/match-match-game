@@ -8,6 +8,8 @@ export class ModalPage extends BaseComponent {
 
   private email = document.querySelector('#email');
 
+  private imagesLoad = document.querySelector('.bg-image-avatars');
+
   private isCheckNames = '[^0-9][^~!@#$%*()_—+=|:;<>,.?/^`" ]{1,30}';
 
   private isCheckEmail =
@@ -56,6 +58,8 @@ export class ModalPage extends BaseComponent {
               </div>
             </div>
             <div class="modal-wrapper__avatars">
+              <img class="bg-image-avatars" src='./images/avatar_fon.svg'>
+              <input class="btn-load--input" id="btnInput" name="upload" type="file">
             </div>
           </div>
           <div class="modal-wrapper_btns">
@@ -73,6 +77,7 @@ export class ModalPage extends BaseComponent {
       firstName: (this.firstName as HTMLInputElement).value,
       lastName: (this.lastName as HTMLInputElement).value,
       email: (this.email as HTMLInputElement).value,
+      imagesLoad: (this.imagesLoad as HTMLImageElement).src,
       score,
     };
     (this.firstName as HTMLInputElement).value = '';
@@ -81,15 +86,39 @@ export class ModalPage extends BaseComponent {
     return IUserData;
   }
 
+  public getAvatar() {
+    const btnUploadFile = <HTMLFormElement>document.querySelector('#btnInput');
+    const avatarImage = <HTMLFormElement>(
+      document.querySelector('.bg-image-avatars')
+    );
+    console.log(this);
+
+    btnUploadFile?.addEventListener('change', e => {
+      const file = URL.createObjectURL(btnUploadFile.files[0]);
+      avatarImage!.src = file;
+      const canvas = document.createElement('canvas');
+      const img = new Image();
+      img.setAttribute('crossOrigin', 'anonymous');
+      img.src = avatarImage!.src;
+      img.addEventListener('load', () => {
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        const ctx = <CanvasRenderingContext2D>canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        const link = document.createElement('a');
+        link.download = 'image.png';
+        link.href = canvas.toDataURL('image/png');
+        avatarImage!.src = link.href;
+      });
+    });
+  }
+
   open(): void {
     this.element.classList.remove('hidden');
   }
 
   close(): void {
     this.element.classList.add('hidden');
-    // (this.firstName as HTMLInputElement).value = '';
-    // (this.lastName as HTMLInputElement).value = '';
-    // (this.email as HTMLInputElement).value = '';
   }
 
   public render(): HTMLElement {

@@ -11,11 +11,11 @@ export class HeaderGamerPersons extends BaseComponent {
     // this.element.appendChild(this.renderAvatar());
   }
 
-  // private static renderButtonReg() {
-  //   const button = new BaseComponent('button', ['header-games__btn__reg']);
-  //   button.element.innerHTML = 'register new player';
-  //   return button.element;
-  // }
+  private static renderButtonReg() {
+    const button = new BaseComponent('button', ['header-games__btn__reg']);
+    button.element.innerHTML = 'register new player';
+    return button.element;
+  }
 
   private static renderButtonStart() {
     const button = new BaseComponent('a', ['header-games__btn__start']);

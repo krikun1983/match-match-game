@@ -2,7 +2,7 @@ import { ModalPage } from '../components/page/modalPage/modalPage';
 import './indexedDB.scss';
 
 export const resData: Array<any> = [];
-console.log(resData);
+
 export class DataBasa {
   public db!: IDBDatabase;
 
@@ -43,6 +43,7 @@ export class DataBasa {
     firstName: string;
     lastName: string;
     email: string;
+    imagesLoad: string;
     score: unknown;
   }) {
     // return new Promise((resolve, reject) => {
@@ -81,27 +82,4 @@ export class DataBasa {
       };
     });
   }
-  // public getAndDisplayNotes = (db: IDBDatabase) => {
-  //   const tx = db.transaction('persons', 'readonly');
-  //   const store = tx.objectStore('persons');
-  //   const result = store.getAll();
-  //   let nodeList: string = '';
-  //   tx.oncomplete = () => {
-  //     this.displayNotes(result.result);
-  //   };
-  // };
-
-  // public displayNotes = (notes: string | any[]) => {
-  //   let listHTML = '<ul class="score-persons-db">';
-  //   for (let i = 0; i < 10; i++) {
-  //     const note = notes[i];
-  //     listHTML += `
-  //     <li class="score-persons-db__item">
-  //       Firstname: ${note.firstName} | Lastname: ${note.lastName} | Email: ${note.email} | Score:  ${note.score}
-  //     </li>
-  //     `;
-  //   }
-  //   listHTML + '</ul>';
-  //   return listHTML;
-  // };
 }

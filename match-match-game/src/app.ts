@@ -21,6 +21,7 @@ export class App {
   }
 
   public modalWindow(): void {
+    this.modalPage.getAvatar();
     localStorage.setItem('select-diffculty', '4');
     const MODALPAGE: Element | null = document.querySelector('.modal-page');
     const BTNMODAL: Element | null = document.querySelector(
