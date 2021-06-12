@@ -6,9 +6,11 @@
   justify-content: center;
   align-items: center;
   perspective: 25rem;
+
   &:hover > .card {
     box-shadow: 0 5px 10px rgba(0,0,0,.5);
   }
+
   &.flipped > .card {
     transform: rotateY(180deg) translateX(-100%);
     transform-origin: left;
@@ -41,6 +43,7 @@
   &__front {
     background-color: red;
   }
+
   &__back {
     background-color: gray;
     background-image: url('../../assets/images/card-back.jpg');

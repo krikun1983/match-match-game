@@ -4,7 +4,7 @@ import './indexedDB.scss';
 
 export const resData: Array<MyRecord> = [];
 
-export class DataBasa {
+export class DataBase {
   public db!: IDBDatabase;
 
   private readonly modalPage: ModalPage;
@@ -30,13 +30,7 @@ export class DataBasa {
 
     dbReq.onsuccess = (): void => {
       this.db = dbReq.result;
-      // this.getAndDisplayNotes(this.db);
       this.getWrite();
-      // this.write();
-    };
-
-    dbReq.onerror = () => {
-      alert(`error opening database ${dbReq.result}`);
     };
   }
 
@@ -47,7 +41,7 @@ export class DataBasa {
     imagesLoad: string;
     score: unknown;
   }) {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       const tx = this.db.transaction(['persons'], 'readwrite');
       let transactionResult: MyRecord;
       tx.oncomplete = () => {
@@ -62,19 +56,16 @@ export class DataBasa {
 
       result.onsuccess = (): IDBValidKey => {
         return result.result;
-      }
-
+      };
     });
   }
 
-  public write(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.addPersons(this.modalPage.get());
-    });
+  write(): void {
+    this.addPersons(this.modalPage.get());
   }
 
   public getWrite(): Promise<Array<MyRecord>> {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       let tx: IDBTransaction | null = null;
       tx = this.db.transaction('persons', 'readonly');
       const store = tx.objectStore('persons');

@@ -5,61 +5,7 @@
   width: 100%;
   max-width: 400px;
   height: 40px;
-  &__btn__reg {
-    cursor: pointer;
-    padding: 10px 16px;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 16px;
-    text-align: center;
-    text-transform: uppercase;
-    color: #2196F3;
-    background-color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    box-shadow: 0px 6px 10px 0px rgba(0,0,0,.12);
-    &:hover {
-      background-color: rgba(255,255,255,.7);
-    }
-  }
-  &__btn__start {
-    cursor: pointer;
-    text-decoration: none;
-    margin-left: 10px;
-    padding: 10px 16px;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 16px;
-    text-align: center;
-    text-transform: uppercase;
-    color: #2196F3;
-    background-color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    box-shadow: 0px 6px 10px 0px rgba(0,0,0,.12);
-    &:hover {
-      background-color: rgba(255,255,255,.7);
-    }
-  }
-  &__btn__stop {
-    cursor: pointer;
-    text-decoration: none;
-    margin-left: 10px;
-    padding: 10px 16px;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 16px;
-    text-align: center;
-    text-transform: uppercase;
-    color: #2196F3;
-    background-color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    box-shadow: 0px 6px 10px 0px rgba(0,0,0,.12);
-    &:hover {
-      background-color: rgba(255,255,255,.7);
-    }
-  }
+
   &__avatar {
     display: flex;
     justify-content: center;
@@ -67,8 +13,29 @@
     margin-left: 30px;
     width: 30px;
     height: 30px;
+
     img {
       border-radius: 50%;
     }
+  }
+}
+
+.btns-header {
+  cursor: pointer;
+  padding: 10px 16px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #2196F3;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0px 6px 10px 0px rgba(0,0,0,.12);
+
+  &:hover {
+    background-color: rgba(255,255,255,.7);
   }
 }

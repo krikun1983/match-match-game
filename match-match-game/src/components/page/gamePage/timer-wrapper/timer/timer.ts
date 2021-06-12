@@ -22,11 +22,11 @@ export class TimerField extends BaseComponent {
     super('div', ['timer-field']);
   }
 
-  public startTimer() {
-    this.seconds++;
+  startTimer(): number {
+    this.seconds += 1;
     if (this.seconds === 60) {
       this.seconds = 0;
-      this.minutes++;
+      this.minutes += 1;
       if (this.minutes === 60) {
         this.seconds = 0;
         this.minutes = 0;
@@ -61,7 +61,7 @@ export class TimerField extends BaseComponent {
     return resultTimes;
   }
 
-  startStop() {
+  startStop(): void {
     const timerBtn = document.querySelector('.timer-btn');
     if (this.status === 'started') {
       this.interval = window.setInterval(() => this.startTimer(), 1000);
@@ -81,7 +81,7 @@ export class TimerField extends BaseComponent {
     });
   }
 
-  stop() {
+  stop(): void {
     window.clearInterval(this.interval);
   }
 }

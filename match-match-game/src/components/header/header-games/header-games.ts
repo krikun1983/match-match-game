@@ -4,24 +4,17 @@ import './header-games.scss';
 export class HeaderGamerPersons extends BaseComponent {
   constructor() {
     super('div', ['header-games']);
-    this.element.appendChild(HeaderGamerPersons.renderButtonStart());
-    this.element.appendChild(HeaderGamerPersons.renderButtonStop());
+    this.element.appendChild(HeaderGamerPersons.renderButtonStartStop());
   }
 
-  private static renderButtonStart() {
-    const button = new BaseComponent('a', ['header-games__btn__start']);
+  private static renderButtonStartStop() {
+    const button = new BaseComponent('a', [
+      'header-games__btn',
+      'btns-header',
+      'state',
+    ]);
     button.element.innerHTML = 'start game';
     button.element.setAttribute('href', '#/game');
-    return button.element;
-  }
-
-  private static renderButtonStop() {
-    const button = new BaseComponent('a', [
-      'header-games__btn__stop',
-      'hidden',
-    ]);
-    button.element.innerHTML = 'stop game';
-    button.element.setAttribute('href', '#/about');
     return button.element;
   }
 }

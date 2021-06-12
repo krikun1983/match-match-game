@@ -1,7 +1,7 @@
-import { Header } from './components/header/header';
-import { ModalPage } from './components/page/modalPage/modalPage';
-import { ModalPageScore } from './components/page/modalPage/modalPageScore';
-import { DataBasa } from './indexedDB/indexedDB';
+import Header from './components/header';
+import ModalPage from './components/page/modalPage';
+import ModalPageScore from './components/page/modalPageScore';
+import DataBase from './indexedDB';
 
 export class App {
   private readonly header: Header;
@@ -21,30 +21,34 @@ export class App {
   }
 
   public modalWindow(): void {
-    const myDb = new DataBasa();
+    const myDb = new DataBase();
     myDb.init('krikun1983');
-    localStorage.setItem('select-diffculty', '4');
+    localStorage.setItem('difficulty-of-game', '4x4');
 
-    this.modalPage.getAvatar();
+    ModalPage.getAvatar();
     this.modalPage.close();
-    this.modalPage.validats();
-    this.modalPageScore.close();
+    ModalPage.validation();
+    ModalPageScore.close();
 
-    const MODAL_REG_PAGE_BTN_ADD: Element | null = document.querySelector('#btn-add');
-    const HEADER_BTN_GAME_START: Element | null = document.querySelector(
-      '.header-games__btn__start',
-    );
-    const HEADER_BTN_GAME_STOP: Element | null = document.querySelector(
-      '.header-games__btn__stop',
-    );
+    const MODAL_REG_PAGE_BTN_ADD: Element | null =
+      document.querySelector('#btn-add');
+    const HEADER_BTN_GAME: Element | null =
+      document.querySelector('.header-games__btn');
+    const MENU_ITEMS = document.querySelectorAll('.menu__item > a');
+    const MENU_ITEMS_SCORE: Element | null = document.querySelector('#score');
 
     MODAL_REG_PAGE_BTN_ADD?.addEventListener('click', (event: Event): void => {
       if (MODAL_REG_PAGE_BTN_ADD?.classList.contains('invalid')) return;
       event.preventDefault();
       myDb.write();
       this.modalPage.close();
-      HEADER_BTN_GAME_START?.classList.remove('hidden');
-      HEADER_BTN_GAME_STOP?.classList.add('hidden');
+      HEADER_BTN_GAME?.classList.add('state');
+      HEADER_BTN_GAME!.innerHTML = 'start game';
+      HEADER_BTN_GAME!.setAttribute('href', '#/game');
+      MENU_ITEMS.forEach(item => {
+        item.classList.remove('active');
+      });
+      MENU_ITEMS_SCORE?.classList.add('active');
     });
   }
 }

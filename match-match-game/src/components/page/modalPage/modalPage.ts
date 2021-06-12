@@ -12,14 +12,14 @@ export class ModalPage extends BaseComponent {
 
   private isCheckNames = '[^0-9][^~!@#$%*()_—+=|:;<>,.?/^`" ]{1,30}';
 
-  private isCheckEmail =
-    '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-.]{2,20}\\.+[a-zA-Z0-9-.]{1,30}$';
+  private isCheckEmail = `^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-.]{2,20}\\.+[a-zA-Z0-9-.]{1,30}$`;
 
-  private isTitleNames =
-    'Поле не может быть пустым, имя не может состоять из цифр, имя не может содержать служебные символы';
+  private isTitleNames = `Поле не может быть пустым,
+    имя не может состоять из цифр,
+    имя не может содержать служебные символы`;
 
-  private isTitleEmails =
-    'email не может быть пустым, должен соответствовать стандартному правилу формированию email';
+  private isTitleEmails = `email не может быть пустым,
+    должен соответствовать стандартному правилу формированию email`;
 
   constructor() {
     super('div', ['modal-page', 'hidden']);
@@ -32,7 +32,9 @@ export class ModalPage extends BaseComponent {
                 <div class="modal-wrapper__inputs_wrap">
                   <div class="modal-wrapper__inputs_field">
                     <label for="firstName">First Name</label>
-                    <input id="firstName" class="input-invalid" type="text" pattern='${this.isCheckNames}' title="${this.isTitleNames}" required>
+                    <input id="firstName"
+                      class="modal-input input-invalid"
+                      type="text" pattern='${this.isCheckNames}' title="${this.isTitleNames}" required>
                   </div>
                   <div class="modal-wrapper__inputs_check">
                     <input id="firstNameCheck" type="checkbox">
@@ -41,7 +43,9 @@ export class ModalPage extends BaseComponent {
               <div class="modal-wrapper__inputs_wrap">
                 <div class="modal-wrapper__inputs_field">
                   <label for="lastName">Last Name</label>
-                  <input id="lastName" class="input-invalid" type="text" pattern='${this.isCheckNames}' title="${this.isTitleEmails}" required>
+                  <input id="lastName"
+                    class="modal-input input-invalid"
+                    type="text" pattern='${this.isCheckNames}' title="${this.isTitleEmails}" required>
                 </div>
                 <div class="modal-wrapper__inputs_check">
                   <input id="lastNameCheck" type="checkbox">
@@ -50,7 +54,9 @@ export class ModalPage extends BaseComponent {
               <div class="modal-wrapper__inputs_wrap">
                 <div class="modal-wrapper__inputs_field">
                   <label for="email">E-mail</label>
-                  <input id="email" class="input-invalid" type="email" pattern='${this.isCheckEmail}' title="${this.isTitleNames}" required>
+                  <input id="email"
+                    class="modal-input input-invalid"
+                    type="email" pattern='${this.isCheckEmail}' title="${this.isTitleNames}" required>
                 </div>
                 <div class="modal-wrapper__inputs_check">
                   <input id="emailCheck" type="checkbox">
@@ -63,7 +69,10 @@ export class ModalPage extends BaseComponent {
             </div>
           </div>
           <div class="modal-wrapper_btns">
-            <button id='btn-add' class="btn-add invalid" type="submit" onclick="window.location.href = '#/score';">Add user</button>
+            <button id='btn-add' class="btn-add invalid"
+            type="submit" onclick="window.location.href = '#/score';">
+              Add user
+            </button>
             <button id='btn-close' type="button">cancel</button>
           </div>
         </form>
@@ -86,7 +95,7 @@ export class ModalPage extends BaseComponent {
     return IUserData;
   }
 
-  public getAvatar() {
+  static getAvatar(): void {
     const btnUploadFile = <HTMLFormElement>document.querySelector('#btnInput');
     const avatarImage = <HTMLFormElement>(
       document.querySelector('.bg-image-avatars')
@@ -111,15 +120,18 @@ export class ModalPage extends BaseComponent {
     });
   }
 
-  open(): void {
-    const MODAL_REG_PAGE_FIELD_AROUND: Element | null = document.querySelector('.modal-page');
+  static open(): void {
+    const MODAL_REG_PAGE_FIELD_AROUND: Element | null =
+      document.querySelector('.modal-page');
     MODAL_REG_PAGE_FIELD_AROUND?.classList.remove('hidden');
   }
 
   close(): void {
     this.element.classList.add('hidden');
-    const MODAL_REG_PAGE_FIELD_AROUND: Element | null = document.querySelector('.modal-page');
-    const MODAL_REG_PAGE_BTN_CLOSE: Element | null = document.querySelector('#btn-close');
+    const MODAL_REG_PAGE_FIELD_AROUND: Element | null =
+      document.querySelector('.modal-page');
+    const MODAL_REG_PAGE_BTN_CLOSE: Element | null =
+      document.querySelector('#btn-close');
     MODAL_REG_PAGE_FIELD_AROUND?.addEventListener('click', (event): void => {
       if (event.target === MODAL_REG_PAGE_FIELD_AROUND) {
         this.element.classList.add('hidden');
@@ -130,7 +142,7 @@ export class ModalPage extends BaseComponent {
     });
   }
 
-  validats() {
+  static validation(): void {
     const firstName: HTMLInputElement | null =
       document.querySelector('#firstName');
 
@@ -148,7 +160,8 @@ export class ModalPage extends BaseComponent {
     const emailCheck: HTMLInputElement | null =
       document.querySelector('#emailCheck');
 
-    const MODAL_REG_PAGE_BTN_ADD: Element | null = document.querySelector('#btn-add');
+    const MODAL_REG_PAGE_BTN_ADD: Element | null =
+      document.querySelector('#btn-add');
 
     const validate = () => {
       if (
@@ -186,19 +199,13 @@ export class ModalPage extends BaseComponent {
         emailCheck?.removeAttribute('checked');
       }
     };
-    // validateField();
-    firstName?.addEventListener('input', () => {
+    const validationAll = () => {
       validateField();
       validate();
-    });
-    lastName?.addEventListener('input', () => {
-      validateField();
-      validate();
-    });
-    email?.addEventListener('input', () => {
-      validateField();
-      validate();
-    });
+    };
+    firstName?.addEventListener('input', validationAll);
+    lastName?.addEventListener('input', validationAll);
+    email?.addEventListener('input', validationAll);
   }
 
   public render(): HTMLElement {

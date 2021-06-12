@@ -1,4 +1,3 @@
-import './settings-form.scss';
 import { BaseComponent } from '../../../base-components';
 import { FormSettingsDifficulty } from './difficulty/form-settings-difficult';
 import { FormSettingsGameCards } from './game-cards/form-settings-game-cards';

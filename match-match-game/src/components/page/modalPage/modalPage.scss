@@ -21,6 +21,7 @@
     -moz-box-shadow: 4px 4px 50px 0px rgba(0, 0, 0, 0.25);
   box-shadow: 4px 4px 50px 0px rgba(0, 0, 0, 0.25);
   border-radius: 0.5rem;
+
   &__header {
     display: flex;
     align-items: center;
@@ -29,14 +30,16 @@
     font-size: 20px;
     line-height: 30px;
   }
+
   &__inputs {
     display: flex;
     flex-direction: column;
+
     &_wrap {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 17px;
+      margin-bottom: 18px;
       padding-left: 20px;
       padding-right: 10px;
       width: 328px;
@@ -46,27 +49,20 @@
       background-color: rgba(33, 33, 33, 0.08);
       border-bottom: 1px solid rgba(0, 0, 0, 0.6);
     }
+
     &_field {
       display: flex;
       flex-direction: column;
       width: 200px;
     }
+
     &_field > label {
       margin-bottom: 4px;
       font-size: 12px;
       line-height: 16px;
       color: rgba(0, 0, 0, 0.5);
     }
-    // &_field > input {
-    //   font-size: 16px;
-    //   line-height: 24px;
-    //   background-color: rgba(255, 255, 255, 0.5);
-    //   border: none;
-    //   border-radius: 4px;
-    //   &.input-invalid {
-    //     background-color: rgb(246, 146, 146);
-    //   }
-    // }
+
     &_check {
       display: flex;
       justify-content: center;
@@ -75,11 +71,13 @@
       height: 40px;
       border-radius: 50%;
       background-color: rgba(1, 135, 134, 0.4);
+
       & > input[type=checkbox] {
         width: 16px;
         height: 16px;
         background-color: #018786;
       }
+
     }
   }
 }
@@ -111,7 +109,7 @@
   margin-right: 20px;
   & > button[type=submit] {
     cursor: pointer;
-    margin-right: 17px;
+    margin-right: 18px;
     padding: 0 16px;
     height: 36px;
     font-size: 14px;
@@ -151,34 +149,13 @@
   display: none;
 }
 
-#firstName {
+.modal-input {
   font-size: 16px;
   line-height: 24px;
   background-color: rgba(255, 255, 255, 0.5);
   border: none;
   border-radius: 4px;
-  &.input-invalid {
-    background-color: rgb(255, 176, 176);
-  }
-}
 
-#lastName {
-  font-size: 16px;
-  line-height: 24px;
-  background-color: rgba(255, 255, 255, 0.5);
-  border: none;
-  border-radius: 4px;
-  &.input-invalid {
-    background-color: rgb(255, 176, 176);
-  }
-}
-
-#email {
-  font-size: 16px;
-  line-height: 24px;
-  background-color: rgba(255, 255, 255, 0.5);
-  border: none;
-  border-radius: 4px;
   &.input-invalid {
     background-color: rgb(255, 176, 176);
   }

@@ -1,10 +1,4 @@
-export interface Component {
-  render(): HTMLElement;
-}
-
-export interface WithRender {
-  render(): HTMLElement;
-}
+import { Component } from './types';
 
 export interface Route {
   path: string;

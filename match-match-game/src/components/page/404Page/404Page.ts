@@ -1,13 +1,12 @@
-import { WithRender } from '../../../app.api';
+import { BaseComponent } from '../../base-components';
 
-export class NotFound404Page implements WithRender {
-  public render(): HTMLElement {
-    const htmlElement = document.createElement('section');
+export class NotFound404Page extends BaseComponent {
+  constructor() {
+    super('section');
+    this.element.textContent = 'NOT FOUND 404';
+  }
 
-    htmlElement.textContent = 'NOT FOUND 404';
-
-    console.log(this);
-
-    return htmlElement;
+  render(): HTMLElement {
+    return this.element;
   }
 }

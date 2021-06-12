@@ -2,7 +2,7 @@ import { BaseComponent } from '../../../../../base-components';
 import './select-game-cards.scss';
 
 export class SelectGameCards extends BaseComponent {
-  private index = 0;
+  public index = localStorage.getItem('select-game-cards');
 
   constructor() {
     super('select', ['select-game-cards']);
@@ -13,9 +13,8 @@ export class SelectGameCards extends BaseComponent {
     `;
 
     this.element.addEventListener('change', (): void => {
-      this.index = +(this.element as HTMLSelectElement).value;
-      console.log(this.index);
-      localStorage.setItem('select-game-cards', this.index.toString());
+      this.index = (this.element as HTMLSelectElement).value;
+      localStorage.setItem('select-game-cards', this.index);
     });
   }
 }

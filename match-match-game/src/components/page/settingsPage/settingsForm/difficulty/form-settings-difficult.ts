@@ -1,16 +1,14 @@
-import './form-settings-difficult.scss';
 import { BaseComponent } from '../../../../base-components';
-import { SelectDiffculty } from './select-difficulty/select-diffculty';
+import { SelectDifficulty } from './select-difficulty/select-difficulty';
 
 export class FormSettingsDifficulty extends BaseComponent {
-  private readonly selectDiffculty: SelectDiffculty;
+  private readonly selectDiffculty: SelectDifficulty;
 
   constructor() {
     super('div', ['form-settings-difficulty']);
-    this.element.innerHTML = `
-      <label class="form-settings__label" for="game-cards">Difficulty</label>
-    `;
-    this.selectDiffculty = new SelectDiffculty();
+    this.element.innerHTML =
+      '<label class="form-settings__label" for="game-cards">Difficulty</label>';
+    this.selectDiffculty = new SelectDifficulty();
     this.element.appendChild(this.selectDiffculty.element);
   }
 

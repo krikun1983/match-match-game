@@ -1,25 +1,22 @@
-import './game.scss';
 import { delay } from '../../shared/delay';
 import { BaseComponent } from '../base-components';
 import { Card } from '../card/card';
 import { CardsField } from '../cards-field/cards-field';
 import { TimerWrapper } from '../page/gamePage/timer-wrapper/timer-wrapper';
 import { TimerField } from '../page/gamePage/timer-wrapper/timer/timer';
-// import { TimerButton } from '../page/gamePage/timer-wrapper/timer-btn/timer-btn';
 import { ModalPage } from '../page/modalPage/modalPage';
+import './game.scss';
 
 const FLIP_DELAY = 2000;
 
 export class Game extends BaseComponent {
-  private counter = 0;
+  private comparisonErrorCounter = 0;
 
   private readonly modalPage: ModalPage;
 
   private timer_wrapper: TimerWrapper;
 
   private timer_field: TimerField;
-
-  // private timerButton: TimerButton;
 
   private readonly cardsField = new CardsField();
 
@@ -32,26 +29,22 @@ export class Game extends BaseComponent {
     this.modalPage = new ModalPage();
     this.timer_wrapper = new TimerWrapper();
     this.timer_field = new TimerField();
-    // this.timerButton = new TimerButton();
     this.cardsField = new CardsField();
     this.element.appendChild(this.timer_wrapper.element);
     this.timer_wrapper.element.appendChild(this.timer_field.element);
-    // this.timer_wrapper.element.appendChild(this.timerButton.element);
     this.element.appendChild(this.cardsField.element);
   }
 
   private static сhangeWidthFieldCards(): void {
     const cardsField = document.querySelector('.cards-field');
-    const DIFFICULT_CAME_TEMP: string | number | null =
-      localStorage.getItem('select-diffculty');
-    if (DIFFICULT_CAME_TEMP === '3') {
+    const fieldOfPlayDependingOnDifficulty: string | number | null =
+      localStorage.getItem('difficulty-of-game');
+    if (fieldOfPlayDependingOnDifficulty === '3') {
       cardsField?.classList.add('cards-field_three');
-    }
-    if (DIFFICULT_CAME_TEMP === '4') {
-      cardsField?.classList.add('cards-field_four');
-    }
-    if (DIFFICULT_CAME_TEMP === '6') {
+    } else if (fieldOfPlayDependingOnDifficulty === '6') {
       cardsField?.classList.add('cards-field_six');
+    } else {
+      cardsField?.classList.add('cards-field_four');
     }
   }
 
@@ -68,7 +61,7 @@ export class Game extends BaseComponent {
     });
   }
 
-  newGame(images: string[], diffculty: number) {
+  newGame(images: string[], diffculty: number): void {
     this.pauseFieledOfTimer();
     Game.сhangeWidthFieldCards();
     this.cardsField.clear();
@@ -103,7 +96,7 @@ export class Game extends BaseComponent {
       this.activeCard.element.classList.remove('check-no');
       card.element.classList.remove('check-no');
       await Promise.all([this.activeCard.flipToBack(), card.flipToBack()]);
-      this.counter++;
+      this.comparisonErrorCounter += 1;
     } else {
       this.activeCard.element.classList.add('check-yes');
       card.element.classList.add('check-yes');
@@ -114,31 +107,23 @@ export class Game extends BaseComponent {
     const isCardOpenAll: boolean = this.cardsField.cards.every(
       elem => elem.isFlipped === false,
     );
-    const gameYes = Number(localStorage.getItem('select-diffculty'));
+    const NumberOfCards =
+      Number(localStorage.getItem('difficulty-of-game')) * 2;
     if (isCardOpenAll) {
       this.timer_field.stop();
       const MODALPAGE: Element | null =
         document.querySelector('.modal-page-score');
+      let scoreResult =
+        (NumberOfCards - this.comparisonErrorCounter) * 100 -
+        this.timer_field.startTimer() * 10;
       MODALPAGE?.classList.remove('hidden');
-      if (
-        (gameYes * 2 - this.counter) * 100 -
-          this.timer_field.startTimer() * 10 <
-        0
-      ) {
-        localStorage.setItem('score', '0');
-      } else {
-        localStorage.setItem(
-          'score',
-          `${
-            (gameYes * 2 - this.counter) * 100 -
-            this.timer_field.startTimer() * 10
-          }
-          `,
-        );
+      if (scoreResult < 0) {
+        scoreResult = 0;
       }
+      localStorage.setItem('score', `${scoreResult}`);
       const score: Element | null = document.querySelector('.score__text');
       score!.textContent = `Congratulations.You win with score
-      ${localStorage.getItem('score')}
+      ${scoreResult}
       `;
     }
   }

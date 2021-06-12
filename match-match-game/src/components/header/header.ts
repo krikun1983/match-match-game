@@ -36,13 +36,10 @@ export class Header extends BaseComponent {
     const MENU_ITEMS = document.querySelectorAll('.menu__item > a');
     const MENU_ITEMS_ABOUT: Element | null = document.querySelector('#about');
     const MENU_ITEMS_SCORE: Element | null = document.querySelector('#score');
-    const MENU_ITEMS_SETTINGS: Element | null = document.querySelector('#settings');
-    const HEADER_BTN_GAME_START: Element | null = document.querySelector(
-      '.header-games__btn__start',
-    );
-    const HEADER_BTN_GAME_STOP: Element | null = document.querySelector(
-      '.header-games__btn__stop',
-    );
+    const MENU_ITEMS_SETTINGS: Element | null =
+      document.querySelector('#settings');
+    const HEADER_BTN_GAME: Element | null =
+      document.querySelector('.header-games__btn');
 
     MENU?.addEventListener('click', (event: Event): void => {
       MENU_ITEMS.forEach(item => {
@@ -52,26 +49,31 @@ export class Header extends BaseComponent {
         event.target.classList.add('active');
       }
     });
-
     MENU_ITEMS_ABOUT?.addEventListener('click', (): void => {
-      HEADER_BTN_GAME_STOP?.classList.add('hidden');
-      HEADER_BTN_GAME_START?.classList.remove('hidden');
+      HEADER_BTN_GAME?.classList.add('state');
+      HEADER_BTN_GAME!.innerHTML = 'start game';
+      HEADER_BTN_GAME!.setAttribute('href', '#/game');
     });
     MENU_ITEMS_SCORE?.addEventListener('click', (): void => {
-      HEADER_BTN_GAME_STOP?.classList.add('hidden');
-      HEADER_BTN_GAME_START?.classList.remove('hidden');
+      HEADER_BTN_GAME?.classList.add('state');
+      HEADER_BTN_GAME!.innerHTML = 'start game';
+      HEADER_BTN_GAME!.setAttribute('href', '#/game');
     });
     MENU_ITEMS_SETTINGS?.addEventListener('click', (): void => {
-      HEADER_BTN_GAME_STOP?.classList.add('hidden');
-      HEADER_BTN_GAME_START?.classList.remove('hidden');
+      HEADER_BTN_GAME?.classList.add('state');
+      HEADER_BTN_GAME!.innerHTML = 'start game';
+      HEADER_BTN_GAME!.setAttribute('href', '#/game');
     });
-    HEADER_BTN_GAME_START?.addEventListener('click', (): void => {
-      HEADER_BTN_GAME_START?.classList.add('hidden');
-      HEADER_BTN_GAME_STOP?.classList.remove('hidden');
-    });
-    HEADER_BTN_GAME_STOP?.addEventListener('click', (): void => {
-      HEADER_BTN_GAME_STOP?.classList.add('hidden');
-      HEADER_BTN_GAME_START?.classList.remove('hidden');
+    HEADER_BTN_GAME?.addEventListener('click', (): void => {
+      if (HEADER_BTN_GAME?.classList.contains('state')) {
+        HEADER_BTN_GAME?.classList.remove('state');
+        HEADER_BTN_GAME!.innerHTML = 'stop game';
+        HEADER_BTN_GAME!.setAttribute('href', '#/game');
+      } else {
+        HEADER_BTN_GAME?.classList.add('state');
+        HEADER_BTN_GAME!.innerHTML = 'start game';
+        HEADER_BTN_GAME!.setAttribute('href', '#/about');
+      }
     });
   }
 }

@@ -1,7 +1,7 @@
-import './main.scss';
 import { BaseComponent } from '../base-components';
 import { Router } from '../../router/router';
 import { Route } from '../../app.api';
+import './main.scss';
 
 export class Main extends BaseComponent {
   constructor(private router: Router) {

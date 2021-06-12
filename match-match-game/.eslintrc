@@ -19,8 +19,13 @@
     "prettier"
   ],
   "rules": {
-    "no-plusplus": "off",
-    "no-console": "warn",
+    "no-plusplus": [
+      "error",
+      {
+        "allowForLoopAfterthoughts": true
+      }
+    ],
+    "no-console": "error",
     "max-len": [
       "warn",
       {
@@ -41,7 +46,7 @@
         "SwitchCase": 1
       }
     ],
-    "import/prefer-default-export": "off",
+    "import/prefer-default-export": 0,
     "no-param-reassign": [
       "error",
       {

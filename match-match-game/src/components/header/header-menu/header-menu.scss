@@ -3,9 +3,11 @@
     justify-content: space-between;
     align-items: center;
     list-style: none;
+
     &__item {
       width: 96px;
       height: 64px;
+
       a {
         cursor: pointer;
         display: flex;
@@ -20,9 +22,11 @@
         text-align: center;
         color: #ffffff;
         text-decoration: none;
+
         &.active {
           background-color: #397de6;
         }
+
         svg {
           display: block;
           width: 20px;
@@ -30,10 +34,12 @@
           margin-bottom: 10px;
         }
       }
+
       &:hover {
         background-color: #397de6;
       }
     }
+
     &__item.active {
       background-color: #397de6;
     }
