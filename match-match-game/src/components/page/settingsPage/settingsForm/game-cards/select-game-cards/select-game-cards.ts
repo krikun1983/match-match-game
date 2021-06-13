@@ -7,8 +7,7 @@ export class SelectGameCards extends BaseComponent {
   constructor() {
     super('select', ['select-game-cards']);
     this.element.innerHTML = `
-      <option value="0" selected>select game cards type</option>
-      <option value="0">animals</option>
+      <option value="0" selected>animals</option>
       <option value="1">toys</option>
     `;
 

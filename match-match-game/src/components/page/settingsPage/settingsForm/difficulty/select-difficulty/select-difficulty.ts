@@ -7,9 +7,8 @@ export class SelectDifficulty extends BaseComponent {
   constructor() {
     super('select', ['select-difficulty']);
     this.element.innerHTML = `
-      <option value="4x4" selected>select game type</option>
       <option value="3x3">3x3</option>
-      <option value="4x4">4x4</option>
+      <option value="4x4" selected>4x4</option>
       <option value="6x6">6x6</option>
     `;
     this.element.addEventListener('change', (): void => {
