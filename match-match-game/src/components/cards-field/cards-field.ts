@@ -2,10 +2,7 @@ import Card from '../card/card';
 import BaseComponent from '../base-components';
 import './cards-field.scss';
 
-/**
- * TIME_SHOW_CARDS_BEFORE_GAME_IN_SECONDS - waiting time for viewing cards
- */
-const TIME_SHOW_CARDS_BEFORE_GAME_IN_SECONDS = 31000;
+const TIME_SHOW_CARDS_BEFORE_GAME_IN_SECONDS = 31000; // seconds;
 
 export default class CardsField extends BaseComponent {
   public cards: Card[] = [];

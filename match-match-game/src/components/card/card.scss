@@ -51,6 +51,7 @@
   }
 }
 
+.check-no::before,
 .check-yes::before {
   content: '';
   display: block;
@@ -61,22 +62,14 @@
   z-index: 100;
   width: 150px;
   height: 160px;
-  background-color: green;
   border-radius: .4rem;
   opacity: .5;
 }
 
+.check-yes::before {
+  background-color: green;
+}
+
 .check-no::before {
-  content: '';
-  display: block;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 100;
-  width: 150px;
-  height: 160px;
   background-color: red;
-  border-radius: .4rem;
-  opacity: .5;
 }

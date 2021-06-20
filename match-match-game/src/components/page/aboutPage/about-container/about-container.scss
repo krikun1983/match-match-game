@@ -29,6 +29,7 @@ h6 {
   justify-content: space-between;
   width: 360px;
   height: 639px;
+
   div {
     width: 100%;
     display: flex;
@@ -39,6 +40,7 @@ h6 {
     color: rgba(0,0, 0, 0.6);
     line-height: 16px;
     background-color: #ffffff;
+
     span {
       display: flex;
       justify-content: center;
@@ -56,12 +58,15 @@ h6 {
       box-shadow: 4px 2px 4px 0px rgba(34, 60, 80, 0.14);
     }
   }
+
   div:nth-child(1) {
     height: 230px;
   }
+
   div:nth-child(2) {
     height: 132px;
   }
+
   div:nth-child(3) {
     height: 240px;
   }
@@ -73,16 +78,19 @@ h6 {
   align-items: flex-end;
   width: 330px;
   height: 639px;
+
   &__popup {
     margin-bottom: 28px;
     width: 302px;
     height: 218px;
   }
+
   &__settings {
     margin-bottom: 80px;
     width: 116px;
     height: 73px;
   }
+
   &__field {
     width: 330px;
     height: 240px;

@@ -1,20 +1,21 @@
+import SettingsGame from '../../../../../../constants/card-images-game';
 import BaseComponent from '../../../../../base-components';
 import './select-difficulty.scss';
 
 export default class SelectDifficulty extends BaseComponent {
-  public index = localStorage.getItem('difficulty-of-game');
+  public index = localStorage.getItem(SettingsGame.difficulty);
 
   constructor() {
     super('select', ['select-difficulty']);
     this.element.innerHTML = `
-      <option value="3x3">3x3</option>
-      <option value="4x4" selected>4x4</option>
-      <option value="6x6">6x6</option>
+      <option value="3">3x3</option>
+      <option value="4" selected="${this.index === '4'}">4x4</option>
+      <option value="6">6x6</option>
     `;
 
     this.element.addEventListener('change', (): void => {
-      this.index = (this.element as HTMLSelectElement).value.slice(0, 1);
-      localStorage.setItem('difficulty-of-game', this.index);
+      this.index = (this.element as HTMLSelectElement).value;
+      localStorage.setItem(SettingsGame.difficulty, this.index);
     });
   }
 }

@@ -1,6 +1,8 @@
 import Header from './components/header';
 import ModalPage from './components/page/modalPage';
 import ModalPageScore from './components/page/modalPageScore';
+import SettingsGame from './constants/card-images-game';
+import Difficulty from './constants/difficulty-game';
 import DataBase from './indexedDB';
 
 export default class App {
@@ -24,7 +26,7 @@ export default class App {
     const myDb = new DataBase();
     myDb.init('krikun1983');
 
-    localStorage.setItem('difficulty-of-game', '4x4');
+    localStorage.setItem(SettingsGame.difficulty, Difficulty.average);
     ModalPage.getAvatar();
     this.modalPage.close();
     ModalPage.validation();
@@ -37,7 +39,9 @@ export default class App {
       '.header-games__btn',
     ) as HTMLButtonElement;
     const MENU_ITEMS = document.querySelectorAll('.menu__item > a');
-    const MENU_ITEMS_SCORE: Element | null = document.querySelector('#score');
+    const MENU_ITEMS_SCORE = document.querySelector(
+      '#score',
+    ) as HTMLLinkElement;
     MODAL_REG_PAGE_BTN_ADD.addEventListener('click', (event: Event): void => {
       if (MODAL_REG_PAGE_BTN_ADD?.classList.contains('invalid')) return;
       event.preventDefault();
@@ -49,7 +53,7 @@ export default class App {
       MENU_ITEMS.forEach(item => {
         item.classList.remove('active');
       });
-      MENU_ITEMS_SCORE?.classList.add('active');
+      MENU_ITEMS_SCORE.classList.add('active');
     });
   }
 }

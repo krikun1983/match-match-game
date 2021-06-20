@@ -1,13 +1,15 @@
+import SettingsGame from '../../constants/card-images-game';
+import Difficulty from '../../constants/difficulty-game';
 import delay from '../../shared/delay';
 import BaseComponent from '../base-components';
 import Card from '../card/card';
 import CardsField from '../cards-field/cards-field';
 import TimerWrapper from '../page/gamePage/timer-wrapper/timer-wrapper';
 import TimerField from '../page/gamePage/timer-wrapper/timer/timer';
-import ModalPage from '../page/modalPage/modalPage';
+import ModalPage from '../page/modalPage';
 import './game.scss';
 
-const FLIP_DELAY = 2000;
+const FLIP_DELAY = 2000; // seconds
 
 export default class Game extends BaseComponent {
   private comparisonErrorCounter = 0;
@@ -37,11 +39,11 @@ export default class Game extends BaseComponent {
 
   private static сhangeWidthFieldCards(): void {
     const cardsField = document.querySelector('.cards-field') as HTMLDivElement;
-    const fieldOfPlayDependingOnDifficulty: string | number | null =
-      localStorage.getItem('difficulty-of-game');
-    if (fieldOfPlayDependingOnDifficulty === '3') {
+    const fieldOfPlayDependingOnDifficulty: string | null =
+      localStorage.getItem(SettingsGame.difficulty);
+    if (fieldOfPlayDependingOnDifficulty === Difficulty.easy) {
       cardsField.classList.add('cards-field_three');
-    } else if (fieldOfPlayDependingOnDifficulty === '6') {
+    } else if (fieldOfPlayDependingOnDifficulty === Difficulty.hard) {
       cardsField.classList.add('cards-field_six');
     } else {
       cardsField.classList.add('cards-field_four');
@@ -53,11 +55,7 @@ export default class Game extends BaseComponent {
     this.timer_field.startStop();
 
     timerBtn?.addEventListener('click', () => {
-      if (this.isAnimation) {
-        this.isAnimation = false;
-      } else {
-        this.isAnimation = true;
-      }
+      this.isAnimation = !this.isAnimation;
     });
   }
 
@@ -108,15 +106,16 @@ export default class Game extends BaseComponent {
       elem => elem.isFlipped === false,
     );
     const NumberOfCards =
-      Number(localStorage.getItem('difficulty-of-game')) * 2;
+      Number(localStorage.getItem(SettingsGame.difficulty)) * 2;
     if (isCardOpenAll) {
       this.timer_field.stop();
-      const MODALPAGE: Element | null =
-        document.querySelector('.modal-page-score');
+      const MODALPAGE = document.querySelector(
+        '.modal-page-score',
+      ) as HTMLDivElement;
       let scoreResult =
         (NumberOfCards - this.comparisonErrorCounter) * 100 -
         this.timer_field.startTimer() * 10;
-      MODALPAGE?.classList.remove('hidden');
+      MODALPAGE.classList.remove('hidden');
       if (scoreResult < 0) {
         scoreResult = 0;
       }

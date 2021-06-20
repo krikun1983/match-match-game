@@ -1,5 +1,5 @@
 import BaseComponent from '../../../base-components';
-import { resData } from '../../../../indexedDB/indexedDB';
+import { resData } from '../../../../indexedDB';
 import './score-container.scss';
 
 export default class ScoreContainer extends BaseComponent {
