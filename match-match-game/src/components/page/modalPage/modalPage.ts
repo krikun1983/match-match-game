@@ -1,7 +1,8 @@
-import { BaseComponent } from '../../base-components';
+import { MyRecord } from '../../../app.types';
+import BaseComponent from '../../base-components';
 import './modalPage.scss';
 
-export class ModalPage extends BaseComponent {
+export default class ModalPage extends BaseComponent {
   private firstName = document.querySelector('#firstName');
 
   private lastName = document.querySelector('#lastName');
@@ -80,7 +81,7 @@ export class ModalPage extends BaseComponent {
     `;
   }
 
-  get() {
+  get(): MyRecord {
     const score: string | null = localStorage.getItem('score');
     const IUserData = {
       firstName: (this.firstName as HTMLInputElement).value,
@@ -100,13 +101,14 @@ export class ModalPage extends BaseComponent {
     const avatarImage = <HTMLFormElement>(
       document.querySelector('.bg-image-avatars')
     );
-    btnUploadFile?.addEventListener('change', e => {
+
+    btnUploadFile.addEventListener('change', () => {
       const file = URL.createObjectURL(btnUploadFile.files[0]);
-      avatarImage!.src = file;
+      avatarImage.src = file;
       const canvas = document.createElement('canvas');
       const img = new Image();
       img.setAttribute('crossOrigin', 'anonymous');
-      img.src = avatarImage!.src;
+      img.src = avatarImage.src;
       img.addEventListener('load', () => {
         canvas.width = img.naturalWidth;
         canvas.height = img.naturalHeight;
@@ -115,7 +117,7 @@ export class ModalPage extends BaseComponent {
         const link = document.createElement('a');
         link.download = 'image.png';
         link.href = canvas.toDataURL('image/png');
-        avatarImage!.src = link.href;
+        avatarImage.src = link.href;
       });
     });
   }
@@ -145,24 +147,17 @@ export class ModalPage extends BaseComponent {
   static validation(): void {
     const firstName: HTMLInputElement | null =
       document.querySelector('#firstName');
-
     const lastName: HTMLInputElement | null =
       document.querySelector('#lastName');
-
     const email: HTMLInputElement | null = document.querySelector('#email');
-
     const firstNameCheck: HTMLInputElement | null =
       document.querySelector('#firstNameCheck');
-
     const lastNameCheck: HTMLInputElement | null =
       document.querySelector('#lastNameCheck');
-
     const emailCheck: HTMLInputElement | null =
       document.querySelector('#emailCheck');
-
     const MODAL_REG_PAGE_BTN_ADD: Element | null =
       document.querySelector('#btn-add');
-
     const validate = () => {
       if (
         firstName?.validity.valid &&
@@ -199,10 +194,12 @@ export class ModalPage extends BaseComponent {
         emailCheck?.removeAttribute('checked');
       }
     };
+
     const validationAll = () => {
       validateField();
       validate();
     };
+
     firstName?.addEventListener('input', validationAll);
     lastName?.addEventListener('input', validationAll);
     email?.addEventListener('input', validationAll);

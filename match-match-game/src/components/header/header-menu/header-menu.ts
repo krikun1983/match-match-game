@@ -1,7 +1,7 @@
-import { BaseComponent } from '../../base-components';
+import BaseComponent from '../../base-components';
 import './header-menu.scss';
 
-export class HeaderMenu extends BaseComponent {
+export default class HeaderMenu extends BaseComponent {
   constructor() {
     super('ul', ['menu']);
     this.element.innerHTML = `

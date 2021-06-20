@@ -1,15 +1,15 @@
-import { delay } from '../../shared/delay';
-import { BaseComponent } from '../base-components';
-import { Card } from '../card/card';
-import { CardsField } from '../cards-field/cards-field';
-import { TimerWrapper } from '../page/gamePage/timer-wrapper/timer-wrapper';
-import { TimerField } from '../page/gamePage/timer-wrapper/timer/timer';
-import { ModalPage } from '../page/modalPage/modalPage';
+import delay from '../../shared/delay';
+import BaseComponent from '../base-components';
+import Card from '../card/card';
+import CardsField from '../cards-field/cards-field';
+import TimerWrapper from '../page/gamePage/timer-wrapper/timer-wrapper';
+import TimerField from '../page/gamePage/timer-wrapper/timer/timer';
+import ModalPage from '../page/modalPage/modalPage';
 import './game.scss';
 
 const FLIP_DELAY = 2000;
 
-export class Game extends BaseComponent {
+export default class Game extends BaseComponent {
   private comparisonErrorCounter = 0;
 
   private readonly modalPage: ModalPage;
@@ -36,15 +36,15 @@ export class Game extends BaseComponent {
   }
 
   private static сhangeWidthFieldCards(): void {
-    const cardsField = document.querySelector('.cards-field');
+    const cardsField = document.querySelector('.cards-field') as HTMLDivElement;
     const fieldOfPlayDependingOnDifficulty: string | number | null =
       localStorage.getItem('difficulty-of-game');
     if (fieldOfPlayDependingOnDifficulty === '3') {
-      cardsField?.classList.add('cards-field_three');
+      cardsField.classList.add('cards-field_three');
     } else if (fieldOfPlayDependingOnDifficulty === '6') {
-      cardsField?.classList.add('cards-field_six');
+      cardsField.classList.add('cards-field_six');
     } else {
-      cardsField?.classList.add('cards-field_four');
+      cardsField.classList.add('cards-field_four');
     }
   }
 
@@ -121,8 +121,10 @@ export class Game extends BaseComponent {
         scoreResult = 0;
       }
       localStorage.setItem('score', `${scoreResult}`);
-      const score: Element | null = document.querySelector('.score__text');
-      score!.textContent = `Congratulations.You win with score
+      const score = document.querySelector(
+        '.score__text',
+      ) as HTMLParagraphElement;
+      score.textContent = `Congratulations.You win with score
       ${scoreResult}
       `;
     }

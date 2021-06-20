@@ -1,11 +1,11 @@
-import { Route } from '../app.api';
-import { NotFound404Page } from '../components/page/404Page/404Page';
-import { AboutPage } from '../components/page/aboutPage/aboutPage';
-import { GamePage } from '../components/page/gamePage/gamePage';
-import { ScorePage } from '../components/page/scorePage/scorePage';
-import { SettingsPage } from '../components/page/settingsPage/settingsPage';
+import Route from '../app.types';
+import NotFound404Page from '../components/page/404Page/404Page';
+import AboutPage from '../components/page/aboutPage/aboutPage';
+import GamePage from '../components/page/gamePage/gamePage';
+import ScorePage from '../components/page/scorePage/scorePage';
+import SettingsPage from '../components/page/settingsPage/settingsPage';
 
-export const routes: Route[] = [
+const routes: Route[] = [
   {
     path: '/',
     Component: AboutPage,
@@ -31,3 +31,5 @@ export const routes: Route[] = [
     Component: NotFound404Page,
   },
 ];
+
+export default routes;

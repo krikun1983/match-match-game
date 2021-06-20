@@ -1,8 +1,8 @@
-import { BaseComponent } from '../../../base-components';
+import BaseComponent from '../../../base-components';
 import { resData } from '../../../../indexedDB/indexedDB';
 import './score-container.scss';
 
-export class ScoreContainer extends BaseComponent {
+export default class ScoreContainer extends BaseComponent {
   public myList = resData;
 
   constructor() {
@@ -14,7 +14,8 @@ export class ScoreContainer extends BaseComponent {
 
   public displayNotes(): string {
     let listHTML = '<div class="score-persons">';
-    for (let i = 0; i < this.myList.length && i < 10; i++) {
+
+    for (let i = 0; i < this.myList.length && i < 10; i += 1) {
       const note = this.myList[i];
       listHTML += `
         <div class="person">
@@ -31,6 +32,8 @@ export class ScoreContainer extends BaseComponent {
         </div>
       `;
     }
+
+    listHTML += '</div>';
     return listHTML;
   }
 

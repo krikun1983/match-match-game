@@ -1,8 +1,8 @@
-import { BaseComponent } from '../../../base-components';
-import { FormSettingsDifficulty } from './difficulty/form-settings-difficult';
-import { FormSettingsGameCards } from './game-cards/form-settings-game-cards';
+import BaseComponent from '../../../base-components';
+import FormSettingsDifficulty from './difficulty/form-settings-difficult';
+import FormSettingsGameCards from './game-cards/form-settings-game-cards';
 
-export class SettingsForm extends BaseComponent {
+export default class SettingsForm extends BaseComponent {
   private readonly formSettingsGameCards: FormSettingsGameCards;
 
   private readonly formSettingsDifficulty: FormSettingsDifficulty;

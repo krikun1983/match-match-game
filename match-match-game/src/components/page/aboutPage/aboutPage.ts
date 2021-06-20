@@ -1,7 +1,7 @@
-import { BaseComponent } from '../../base-components';
-import { AboutContainer } from './about-container/about-container';
+import BaseComponent from '../../base-components';
+import AboutContainer from './about-container/about-container';
 
-export class AboutPage extends BaseComponent {
+export default class AboutPage extends BaseComponent {
   private readonly container: AboutContainer;
 
   constructor() {

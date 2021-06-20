@@ -1,3 +1,3 @@
-import { ModalPage } from './modalPage';
+import ModalPage from './modalPage';
 
 export default ModalPage;

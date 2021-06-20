@@ -1,3 +1,3 @@
-import { ModalPageScore } from './modalPageScore';
+import ModalPageScore from './modalPageScore';
 
 export default ModalPageScore;

@@ -1,10 +1,10 @@
-import { ModalPage } from '../components/page/modalPage/modalPage';
-import { MyRecord } from '../app.api';
+import ModalPage from '../components/page/modalPage/modalPage';
+import { MyRecord } from '../app.types';
 import './indexedDB.scss';
 
 export const resData: Array<MyRecord> = [];
 
-export class DataBase {
+export default class DataBase {
   public db!: IDBDatabase;
 
   private readonly modalPage: ModalPage;
@@ -39,19 +39,18 @@ export class DataBase {
     lastName: string;
     email: string;
     imagesLoad: string;
-    score: unknown;
-  }) {
+    score: string | null;
+  }): Promise<MyRecord> {
     return new Promise(resolve => {
       const tx = this.db.transaction(['persons'], 'readwrite');
       let transactionResult: MyRecord;
+
       tx.oncomplete = () => {
         resolve(transactionResult);
       };
 
       const store = tx.objectStore('persons');
       const note = player;
-      // store.put(note);
-
       const result = store.put(note);
 
       result.onsuccess = (): IDBValidKey => {
@@ -72,11 +71,14 @@ export class DataBase {
       const result = store.index('score').openCursor(null, 'prev');
       result.onsuccess = (): void => {
         const cursor = result.result;
+
         if (cursor) {
           resData.push(cursor?.value);
         }
+
         cursor?.continue();
       };
+
       tx.oncomplete = (): void => {
         resolve(resData);
       };

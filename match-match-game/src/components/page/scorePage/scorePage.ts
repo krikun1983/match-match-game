@@ -1,7 +1,7 @@
-import { BaseComponent } from '../../base-components';
-import { ScoreContainer } from './score-container/score-container';
+import BaseComponent from '../../base-components';
+import ScoreContainer from './score-container/score-container';
 
-export class ScorePage extends BaseComponent {
+export default class ScorePage extends BaseComponent {
   private readonly container: ScoreContainer;
 
   constructor() {

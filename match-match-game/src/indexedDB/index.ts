@@ -1,3 +1,3 @@
-import { DataBase } from './indexedDB';
+import DataBase from './indexedDB';
 
 export default DataBase;

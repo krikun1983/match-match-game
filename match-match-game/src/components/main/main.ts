@@ -1,9 +1,9 @@
-import { BaseComponent } from '../base-components';
-import { Router } from '../../router/router';
-import { Route } from '../../app.api';
+import BaseComponent from '../base-components';
+import Router from '../../router/router';
+import Route from '../../app.types';
 import './main.scss';
 
-export class Main extends BaseComponent {
+export default class Main extends BaseComponent {
   constructor(private router: Router) {
     super('main', ['main']);
     this.router.onRouteChange(route => this.renderCurrentComponent(route));

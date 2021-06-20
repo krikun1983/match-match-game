@@ -1,7 +1,8 @@
-import { BaseComponent } from '../../../../base-components';
+import BaseComponent from '../../../../base-components';
+
 import './timer.scss';
 
-export class TimerField extends BaseComponent {
+export default class TimerField extends BaseComponent {
   private seconds = -31;
 
   private minutes = 0;
@@ -24,18 +25,20 @@ export class TimerField extends BaseComponent {
 
   startTimer(): number {
     this.seconds += 1;
+
     if (this.seconds === 60) {
       this.seconds = 0;
       this.minutes += 1;
+
       if (this.minutes === 60) {
         this.seconds = 0;
         this.minutes = 0;
       }
     }
+
     if (this.seconds < 0) {
       this.displaySecondsMinus = this.seconds.toString();
-    }
-    if (this.seconds >= 0 && this.seconds < 10) {
+    } else if (this.seconds >= 0 && this.seconds < 10) {
       this.displaySeconds = `0${this.seconds.toString()}`;
     } else {
       this.displaySeconds = this.seconds.toString();
@@ -51,23 +54,26 @@ export class TimerField extends BaseComponent {
       this.element.innerHTML = `
           <span class='timer-item timer-minutes'>${this.displayMinutes}</span>:
           <span class='timer-item timer-seconds'>${this.displaySeconds}</span>
-    `;
+      `;
     } else {
       this.element.innerHTML = `
           <span class='timer-item timer-seconds'>${this.displaySecondsMinus}</span>
     `;
     }
+
     const resultTimes = +this.displayMinutes * 60 + +this.displaySeconds;
     return resultTimes;
   }
 
   startStop(): void {
     const timerBtn = document.querySelector('.timer-btn');
+
     if (this.status === 'started') {
       this.interval = window.setInterval(() => this.startTimer(), 1000);
     } else {
       window.clearInterval(this.interval);
     }
+
     timerBtn?.addEventListener('click', () => {
       if (this.status === 'started') {
         window.clearInterval(this.interval);

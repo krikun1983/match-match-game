@@ -1,8 +1,8 @@
-import { BaseComponent } from '../../base-components';
-import { Game } from '../../game/game';
+import BaseComponent from '../../base-components';
+import Game from '../../game/game';
 import { ImageCategoryModel } from '../../models/images-category-model';
 
-export class GamePage extends BaseComponent {
+export default class GamePage extends BaseComponent {
   private readonly game: Game;
 
   constructor() {
@@ -12,17 +12,19 @@ export class GamePage extends BaseComponent {
   }
 
   async start(): Promise<void> {
-    const DIFFICULT_GAME_SETTINGS: string | number | null =
+    const SELECT_DIFFICULT_GAME_SETTINGS: string | null =
       localStorage.getItem('difficulty-of-game');
-
-    const SELECTED_GAME_SETTINGS: string | number | null =
+    const SELECT_IMAGE_FOR_GAME_CARDS_SETTINGS: string | null =
       localStorage.getItem('select-game-cards');
-
     const res = await fetch('../images.json');
     const categories: ImageCategoryModel[] = await res.json();
-    const cat = categories[Number(SELECTED_GAME_SETTINGS)];
+    const cat = categories[Number(SELECT_IMAGE_FOR_GAME_CARDS_SETTINGS)];
     const images = cat.images.map(name => `${cat.category}/${name}`);
-    this.game.newGame(images, Number(DIFFICULT_GAME_SETTINGS!.slice(0, 1)));
+
+    this.game.newGame(
+      images,
+      Number(SELECT_DIFFICULT_GAME_SETTINGS?.slice(0, 1)),
+    );
   }
 
   public render(): HTMLElement {

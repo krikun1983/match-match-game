@@ -1,7 +1,7 @@
-import { BaseComponent } from '../../base-components';
+import BaseComponent from '../../base-components';
 import './header-games.scss';
 
-export class HeaderGamerPersons extends BaseComponent {
+export default class HeaderGamerPersons extends BaseComponent {
   constructor() {
     super('div', ['header-games']);
     this.element.appendChild(HeaderGamerPersons.renderButtonStartStop());

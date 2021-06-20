@@ -1,13 +1,13 @@
-import { Card } from '../card/card';
-import { BaseComponent } from '../base-components';
+import Card from '../card/card';
+import BaseComponent from '../base-components';
 import './cards-field.scss';
 
 /**
- * SHOW_TIME - waiting time for viewing cards
+ * TIME_SHOW_CARDS_BEFORE_GAME_IN_SECONDS - waiting time for viewing cards
  */
-const SHOW_TIME = 31;
+const TIME_SHOW_CARDS_BEFORE_GAME_IN_SECONDS = 31000;
 
-export class CardsField extends BaseComponent {
+export default class CardsField extends BaseComponent {
   public cards: Card[] = [];
 
   constructor() {
@@ -22,8 +22,9 @@ export class CardsField extends BaseComponent {
   addCards(cards: Card[]): void {
     this.cards = cards;
     this.cards.forEach(card => this.element.appendChild(card.element));
+
     setTimeout(() => {
       this.cards.forEach(card => card.flipToBack());
-    }, SHOW_TIME * 1000);
+    }, TIME_SHOW_CARDS_BEFORE_GAME_IN_SECONDS);
   }
 }

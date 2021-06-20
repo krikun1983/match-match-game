@@ -1,8 +1,8 @@
-import { BaseComponent } from '../../../../base-components';
-import { SelectGameCards } from './select-game-cards/select-game-cards';
+import BaseComponent from '../../../../base-components';
+import SelectGameCards from './select-game-cards/select-game-cards';
 import './form-settings-game-cards.scss';
 
-export class FormSettingsGameCards extends BaseComponent {
+export default class FormSettingsGameCards extends BaseComponent {
   private readonly selectGameCards: SelectGameCards;
 
   constructor() {

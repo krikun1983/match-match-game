@@ -1,7 +1,7 @@
-import { BaseComponent } from '../../../../base-components';
-import { SelectDifficulty } from './select-difficulty/select-difficulty';
+import BaseComponent from '../../../../base-components';
+import SelectDifficulty from './select-difficulty/select-difficulty';
 
-export class FormSettingsDifficulty extends BaseComponent {
+export default class FormSettingsDifficulty extends BaseComponent {
   private readonly selectDiffculty: SelectDifficulty;
 
   constructor() {

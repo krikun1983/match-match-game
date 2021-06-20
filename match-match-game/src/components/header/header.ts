@@ -1,12 +1,12 @@
-import { BaseComponent } from '../base-components';
-import { HeaderMatch } from './header-match/header-match';
-import { HeaderContainer } from './header-container/header-container';
-import { HeaderMenu } from './header-menu/header-menu';
-import { HeaderNav } from './header-nav/header-nav';
-import { HeaderGamerPersons } from './header-games/header-games';
+import BaseComponent from '../base-components';
+import HeaderMatch from './header-match/header-match';
+import HeaderContainer from './header-container/header-container';
+import HeaderMenu from './header-menu/header-menu';
+import HeaderNav from './header-nav/header-nav';
+import HeaderGamerPersons from './header-games/header-games';
 import './header.scss';
 
-export class Header extends BaseComponent {
+export default class Header extends BaseComponent {
   private readonly headerContainer: HeaderContainer;
 
   private readonly match: HeaderMatch;
@@ -32,48 +32,50 @@ export class Header extends BaseComponent {
   }
 
   public static addClassActive(): void {
-    const MENU = document.querySelector('.menu');
+    const MENU = document.querySelector('.menu') as HTMLUListElement;
     const MENU_ITEMS = document.querySelectorAll('.menu__item > a');
-    const MENU_ITEMS_ABOUT: Element | null = document.querySelector('#about');
-    const MENU_ITEMS_SCORE: Element | null = document.querySelector('#score');
-    const MENU_ITEMS_SETTINGS: Element | null =
-      document.querySelector('#settings');
-    const HEADER_BTN_GAME: Element | null =
-      document.querySelector('.header-games__btn');
+    const MENU_ITEM_ABOUT = document.querySelector('#about') as HTMLLinkElement;
+    const MENU_ITEM_SCORE = document.querySelector('#score') as HTMLLinkElement;
+    const MENU_ITEM_SETTINGS = document.querySelector(
+      '#settings',
+    ) as HTMLLinkElement;
+    const HEADER_BTN_GAME = document.querySelector(
+      '.header-games__btn',
+    ) as HTMLButtonElement;
+    const MENU_ITEM_ACTIVE_CLASS = 'active';
 
-    MENU?.addEventListener('click', (event: Event): void => {
+    MENU.addEventListener('click', (event: Event): void => {
       MENU_ITEMS.forEach(item => {
-        item.classList.remove('active');
+        item.classList.remove(MENU_ITEM_ACTIVE_CLASS);
       });
       if (event.target instanceof Element) {
-        event.target.classList.add('active');
+        event.target.classList.add(MENU_ITEM_ACTIVE_CLASS);
       }
     });
-    MENU_ITEMS_ABOUT?.addEventListener('click', (): void => {
-      HEADER_BTN_GAME?.classList.add('state');
-      HEADER_BTN_GAME!.innerHTML = 'start game';
-      HEADER_BTN_GAME!.setAttribute('href', '#/game');
-    });
-    MENU_ITEMS_SCORE?.addEventListener('click', (): void => {
-      HEADER_BTN_GAME?.classList.add('state');
-      HEADER_BTN_GAME!.innerHTML = 'start game';
-      HEADER_BTN_GAME!.setAttribute('href', '#/game');
-    });
-    MENU_ITEMS_SETTINGS?.addEventListener('click', (): void => {
-      HEADER_BTN_GAME?.classList.add('state');
-      HEADER_BTN_GAME!.innerHTML = 'start game';
-      HEADER_BTN_GAME!.setAttribute('href', '#/game');
-    });
-    HEADER_BTN_GAME?.addEventListener('click', (): void => {
-      if (HEADER_BTN_GAME?.classList.contains('state')) {
-        HEADER_BTN_GAME?.classList.remove('state');
-        HEADER_BTN_GAME!.innerHTML = 'stop game';
-        HEADER_BTN_GAME!.setAttribute('href', '#/game');
+
+    const headerBtnGameAddStart = (): void => {
+      HEADER_BTN_GAME.classList.add('state');
+      HEADER_BTN_GAME.innerHTML = 'start game';
+      HEADER_BTN_GAME.setAttribute('href', '#/about');
+    };
+
+    const headerBtnGameRemoveStart = (): void => {
+      HEADER_BTN_GAME.classList.remove('state');
+      HEADER_BTN_GAME.innerHTML = 'stop game';
+      HEADER_BTN_GAME.setAttribute('href', '#/game');
+    };
+
+    const headerBtnGameStartStop = (): void => {
+      if (HEADER_BTN_GAME.classList.contains('state')) {
+        headerBtnGameRemoveStart();
       } else {
-        HEADER_BTN_GAME?.classList.add('state');
-        HEADER_BTN_GAME!.innerHTML = 'start game';
-        HEADER_BTN_GAME!.setAttribute('href', '#/about');
+        headerBtnGameAddStart();
       }
-    });
+    };
+
+    MENU_ITEM_ABOUT.addEventListener('click', headerBtnGameAddStart);
+    MENU_ITEM_SCORE.addEventListener('click', headerBtnGameAddStart);
+    MENU_ITEM_SETTINGS.addEventListener('click', headerBtnGameAddStart);
+    HEADER_BTN_GAME.addEventListener('click', headerBtnGameStartStop);
   }
 }

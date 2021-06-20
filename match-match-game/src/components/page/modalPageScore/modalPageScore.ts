@@ -1,8 +1,8 @@
-import { BaseComponent } from '../../base-components';
-import { ModalPage } from '../modalPage/modalPage';
+import BaseComponent from '../../base-components';
+import ModalPage from '../modalPage/modalPage';
 import './modalPageScore.scss';
 
-export class ModalPageScore extends BaseComponent {
+export default class ModalPageScore extends BaseComponent {
   private readonly modalPage: ModalPage;
 
   constructor() {
@@ -17,13 +17,15 @@ export class ModalPageScore extends BaseComponent {
   }
 
   static close(): void {
-    const MODAL_SCORE_PAGE_BTN_OK: Element | null =
-      document.querySelector('.score__button');
-    const MODAL_SCORE_PAGE_FIELD_AROUND: Element | null =
-      document.querySelector('.modal-page-score');
+    const MODAL_SCORE_PAGE_BTN_OK = document.querySelector(
+      '.score__button',
+    ) as HTMLButtonElement;
+    const MODAL_SCORE_PAGE_FIELD_AROUND = document.querySelector(
+      '.modal-page-score',
+    ) as HTMLDivElement;
 
-    MODAL_SCORE_PAGE_BTN_OK?.addEventListener('click', (): void => {
-      MODAL_SCORE_PAGE_FIELD_AROUND?.classList.add('hidden');
+    MODAL_SCORE_PAGE_BTN_OK.addEventListener('click', (): void => {
+      MODAL_SCORE_PAGE_FIELD_AROUND.classList.add('hidden');
       ModalPage.open();
     });
   }
