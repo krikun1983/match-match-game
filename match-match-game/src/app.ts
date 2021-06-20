@@ -38,10 +38,6 @@ export default class App {
     const HEADER_BTN_GAME = document.querySelector(
       '.header-games__btn',
     ) as HTMLButtonElement;
-    const MENU_ITEMS = document.querySelectorAll('.menu__item > a');
-    const MENU_ITEMS_SCORE = document.querySelector(
-      '#score',
-    ) as HTMLLinkElement;
     MODAL_REG_PAGE_BTN_ADD.addEventListener('click', (event: Event): void => {
       if (MODAL_REG_PAGE_BTN_ADD?.classList.contains('invalid')) return;
       event.preventDefault();
@@ -50,10 +46,6 @@ export default class App {
       HEADER_BTN_GAME.classList.add('state');
       HEADER_BTN_GAME.innerHTML = 'start game';
       HEADER_BTN_GAME.setAttribute('href', '#/game');
-      MENU_ITEMS.forEach(item => {
-        item.classList.remove('active');
-      });
-      MENU_ITEMS_SCORE.classList.add('active');
     });
   }
 }

@@ -20,6 +20,38 @@ export default class Router {
   public onRouteChange(callback: (route: Route) => void): void {
     window.addEventListener('popstate', () => {
       callback(this.getCurrentRoute());
+
+      const currentRoute = this.getCurrentRoute();
+      const MenuItemsAbout = document.querySelector(
+        '#about',
+      ) as HTMLLinkElement;
+      const MenuItemsScore = document.querySelector(
+        '#score',
+      ) as HTMLLinkElement;
+      const MenuItemsSettings = document.querySelector(
+        '#settings',
+      ) as HTMLLinkElement;
+      const MENU_ITEMS = document.querySelectorAll('.menu__item > a');
+      const MENU_ITEM_CURRENT = 'active';
+
+      const menuItemsRemoveActive = (): void => {
+        MENU_ITEMS.forEach(item => {
+          item.classList.remove(MENU_ITEM_CURRENT);
+        });
+      };
+
+      if (currentRoute.path === '/about') {
+        menuItemsRemoveActive();
+        MenuItemsAbout.classList.add(MENU_ITEM_CURRENT);
+      } else if (currentRoute.path === '/score') {
+        menuItemsRemoveActive();
+        MenuItemsScore.classList.add(MENU_ITEM_CURRENT);
+      } else if (currentRoute.path === '/settings') {
+        menuItemsRemoveActive();
+        MenuItemsSettings.classList.add(MENU_ITEM_CURRENT);
+      } else {
+        menuItemsRemoveActive();
+      }
     });
   }
 
@@ -27,7 +59,6 @@ export default class Router {
     const currentRoute = this.routes.find(
       route => route.path === Router.getCurrentPath(),
     );
-
     return currentRoute ?? this.notFound404Route;
   }
 

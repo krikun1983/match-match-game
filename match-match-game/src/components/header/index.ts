@@ -32,8 +32,6 @@ export default class Header extends BaseComponent {
   }
 
   public static addClassActive(): void {
-    const MENU = document.querySelector('.menu') as HTMLUListElement;
-    const MENU_ITEMS = document.querySelectorAll('.menu__item > a');
     const MENU_ITEM_ABOUT = document.querySelector('#about') as HTMLLinkElement;
     const MENU_ITEM_SCORE = document.querySelector('#score') as HTMLLinkElement;
     const MENU_ITEM_SETTINGS = document.querySelector(
@@ -42,16 +40,6 @@ export default class Header extends BaseComponent {
     const HEADER_BTN_GAME = document.querySelector(
       '.header-games__btn',
     ) as HTMLButtonElement;
-    const MENU_ITEM_ACTIVE_CLASS = 'active';
-
-    MENU.addEventListener('click', (event: Event): void => {
-      MENU_ITEMS.forEach(item => {
-        item.classList.remove(MENU_ITEM_ACTIVE_CLASS);
-      });
-      if (event.target instanceof Element) {
-        event.target.classList.add(MENU_ITEM_ACTIVE_CLASS);
-      }
-    });
 
     const headerBtnGameAddStart = (): void => {
       HEADER_BTN_GAME.classList.add('state');

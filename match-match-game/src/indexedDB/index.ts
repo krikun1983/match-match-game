@@ -52,7 +52,6 @@ export default class DataBase {
       const store = tx.objectStore('persons');
       const note = player;
       const result = store.put(note);
-
       result.onsuccess = (): IDBValidKey => {
         return result.result;
       };
@@ -71,7 +70,6 @@ export default class DataBase {
       const result = store.index('score').openCursor(null, 'prev');
       result.onsuccess = (): void => {
         const cursor = result.result;
-
         if (cursor) {
           resData.push(cursor?.value);
         }
